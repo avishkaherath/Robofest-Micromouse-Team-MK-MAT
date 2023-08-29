@@ -16,6 +16,66 @@ void countRightEnc(){
 }
 
 
+//-------------------------------------------------------------------------------
+void leftForward(int Pwm){
+  analogWrite(PINL1,leftPwm);
+  digitalWrite(PINL2,LOW);   
+}
+
+void rightForward(int Pwm){
+  analogWrite(PINR1,rightPwm);
+  digitalWrite(PINR2,LOW); 
+}
+
+void leftBackward(int Pwm){
+  analogWrite(PINL2,Pwm);
+  digitalWrite(PINL1,LOW); 
+}
+
+void rightBackward(int Pwm){
+  analogWrite(PINR2,Pwm);
+  digitalWrite(PINR1,LOW); 
+}
+
+void leftBrake(){
+  digitalWrite(PINL1, HIGH);
+  digitalWrite(PINL2, HIGH);
+}
+
+void rightBrake(){
+  digitalWrite(PINR1, HIGH);
+  digitalWrite(PINR2, HIGH);
+}
+
+//--------------------------------------------------------------------------------
+
+void forward(){
+  leftForward(leftPwm);
+  rightForward(rightPwm);
+}
+
+void reverse(){
+  leftBackward(leftPwm);
+  rightBackward(rightPwm);
+}
+
+void turnLeft(){
+  leftBackward(leftPwm);
+  rightForward(rightPwm);
+}
+
+void turnRigh(){
+  leftForward(leftPwm);
+  rightBackward(rightPwm);
+}
+
+void brake(){
+  leftBrake();
+  rightBrake();
+}
+
+//----------------------------------------
+
 //// define motor class
 //class motor {
 //  public:
@@ -87,62 +147,3 @@ void countRightEnc(){
 //  motorL.forward(leftPwm);
 //  motorR.backward(rightPwm);
 //}
-
-
-//-------------------------------------------------------------------------------
-void leftForward(int Pwm){
-  analogWrite(PINL1,leftPwm);
-  digitalWrite(PINL2,LOW);   
-}
-
-void rightForward(int Pwm){
-  analogWrite(PINR1,rightPwm);
-  digitalWrite(PINR2,LOW); 
-}
-
-void leftBackward(int Pwm){
-  analogWrite(PINL2,Pwm);
-  digitalWrite(PINL1,LOW); 
-}
-
-void rightBackward(int Pwm){
-  analogWrite(PINR2,Pwm);
-  digitalWrite(PINR1,LOW); 
-}
-
-void leftBrake(){
-  digitalWrite(PINL1, HIGH);
-  digitalWrite(PINL2, HIGH);
-}
-
-void rightBrake(){
-  digitalWrite(PINR1, HIGH);
-  digitalWrite(PINR2, HIGH);
-}
-
-//--------------------------------------------------------------------------------
-
-void forward(){
-  leftForward(leftPwm);
-  rightForward(rightPwm);
-}
-
-void reverse(){
-  leftBackward(leftPwm);
-  rightBackward(rightPwm);
-}
-
-void turnLeft(){
-  leftBackward(leftPwm);
-  rightForward(rightPwm);
-}
-
-void turnRigh(){
-  leftForward(leftPwm);
-  rightBackward(rightPwm);
-}
-
-void brake(){
-  leftBrake();
-  rightBrake();
-}
