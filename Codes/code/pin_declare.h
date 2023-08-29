@@ -1,20 +1,20 @@
 
-#define PINA1 10  // IN1 LEFT MOTOR
-#define PINA2 9   // IN2
-#define PINB1 6   // IN3 RIGHT MOTOR
-#define PINB2 5   // IN4
+#define PINL1 PB6  // IN1 LEFT MOTOR
+#define PINL2 PB7   // IN2
+#define PINR1 PB8   // IN3 RIGHT MOTOR
+#define PINR2 PB9   // IN4
 
-#define ENCL1 3   //should be an interrupt pin
-#define ENCL2 13
-#define ENCR1 2   //should be an interrupt pin
-#define ENCR2 8
+#define ENCL1 PB12   //should be an interrupt pin
+#define ENCL2 PB13
+#define ENCR1 PB14   //should be an interrupt pin
+#define ENCR2 PB15
 
 //motor
 void motor_setup(){
-  pinMode(PINA1, OUTPUT);
-  pinMode(PINA2, OUTPUT);
-  pinMode(PINB1, OUTPUT);
-  pinMode(PINB2, OUTPUT);
+  pinMode(PINL1, OUTPUT);
+  pinMode(PINL2, OUTPUT);
+  pinMode(PINR1, OUTPUT);
+  pinMode(PINR2, OUTPUT);
 }
 
 void interrupt_setup(){

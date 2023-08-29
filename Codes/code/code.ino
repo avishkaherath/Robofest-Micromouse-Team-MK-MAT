@@ -19,8 +19,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(ENCL1), countLeftEnc, RISING);
   attachInterrupt(digitalPinToInterrupt(ENCR1), countRightEnc, RISING);
   Serial.begin(9600);
-  motorL.reverse(leftPwm);
-  motorR.reverse(rightPwm);
+  reverse();
 }
 
 void loop() {
