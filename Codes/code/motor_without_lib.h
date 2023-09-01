@@ -19,32 +19,32 @@ void countRightEnc(){
 //-------------------------------------------------------------------------------
 void leftForward(int Pwm){
   analogWrite(PINL1,leftPwm);
-  digitalWrite(PINL2,LOW);   
+  analogWrite(PINL2,1);   
 }
 
 void rightForward(int Pwm){
   analogWrite(PINR1,rightPwm);
-  digitalWrite(PINR2,LOW); 
+  analogWrite(PINR2,1); 
 }
 
 void leftBackward(int Pwm){
   analogWrite(PINL2,Pwm);
-  digitalWrite(PINL1,LOW); 
+  analogWrite(PINL1,1); 
 }
 
 void rightBackward(int Pwm){
   analogWrite(PINR2,Pwm);
-  digitalWrite(PINR1,LOW); 
+  analogWrite(PINR1,1); 
 }
 
 void leftBrake(){
-  digitalWrite(PINL1, HIGH);
-  digitalWrite(PINL2, HIGH);
+  analogWrite(PINL1, 1);
+  analogWrite(PINL2, 1);
 }
 
 void rightBrake(){
-  digitalWrite(PINR1, HIGH);
-  digitalWrite(PINR2, HIGH);
+  analogWrite(PINR1, 1);
+  analogWrite(PINR2, 1);
 }
 
 //--------------------------------------------------------------------------------
@@ -64,16 +64,22 @@ void turnLeft(){
   rightForward(rightPwm);
 }
 
-void turnRigh(){
+void turnRight(){
   leftForward(leftPwm);
   rightBackward(rightPwm);
 }
 
-void brake(){
+void mBrake(){
   leftBrake();
   rightBrake();
 }
 
+void idle(){
+  digitalWrite(PINR1, LOW);
+  digitalWrite(PINR2, LOW);
+  digitalWrite(PINL1, LOW);
+  digitalWrite(PINL2, LOW);
+}
 //----------------------------------------
 
 //// define motor class
