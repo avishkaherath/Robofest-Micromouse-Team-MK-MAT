@@ -1,8 +1,8 @@
 //motor control
 int leftPwm = 200;
-int leftBase = 200;
+int leftBase = 150;
 int rightPwm = 200;
-int rightBase = 200;
+int rightBase = 150;
 
 // Encoders
 long leftEncoder = 0;

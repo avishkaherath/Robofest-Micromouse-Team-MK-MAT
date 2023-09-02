@@ -13,18 +13,14 @@ void setup() {
   Serial.begin(9600);
   delay(1000);
   Serial.println("start");
-  forward();
-  delay(1500);
-  mBreak();
+  left90();
+  Serial.print(leftEncoder);
+  Serial.print(" , ");
+  Serial.println(rightEncoder);
 }
 
-  void loop() {
-  if ( millis() - lastMilli > 100){
-     Serial.print(leftEncoder);
-     Serial.print(" , ");
-     Serial.println(rightEncoder);
-     leftEncoder = 0;
-     rightEncoder = 0;
-     lastMilli = millis();
+void loop() {
+  if ( millis() - lastMilli > 100) {
+
   }
-  }
+}
