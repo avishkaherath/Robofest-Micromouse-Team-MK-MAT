@@ -18,12 +18,12 @@ void countRightEnc(){
 
 //-------------------------------------------------------------------------------
 void leftForward(int Pwm){
-  analogWrite(PINL1,leftPwm);
+  analogWrite(PINL1,Pwm);
   analogWrite(PINL2,1);   
 }
 
 void rightForward(int Pwm){
-  analogWrite(PINR1,rightPwm);
+  analogWrite(PINR1,Pwm);
   analogWrite(PINR2,1); 
 }
 
@@ -37,12 +37,12 @@ void rightBackward(int Pwm){
   analogWrite(PINR1,1); 
 }
 
-void leftBrake(){
+void leftBreak(){
   analogWrite(PINL1, 1);
   analogWrite(PINL2, 1);
 }
 
-void rightBrake(){
+void rightBreak(){
   analogWrite(PINR1, 1);
   analogWrite(PINR2, 1);
 }
@@ -69,9 +69,9 @@ void turnRight(){
   rightBackward(rightPwm);
 }
 
-void mBrake(){
-  leftBrake();
-  rightBrake();
+void mBreak(){
+  leftBreak();
+  rightBreak();
 }
 
 void idle(){

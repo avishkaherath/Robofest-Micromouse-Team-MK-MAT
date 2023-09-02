@@ -4,9 +4,9 @@
 #define PINR1 PB8   // IN3 RIGHT MOTOR
 #define PINR2 PB9   // IN4
 
-#define ENCL1 PA1   //should be an interrupt pin
-#define ENCL2 PA2
-#define ENCR1 PA4   //should be an interrupt pin
+#define ENCL1 PA0   //should be an interrupt pin
+#define ENCL2 PA1
+#define ENCR1 PA2   //should be an interrupt pin
 #define ENCR2 PA3
 
 
