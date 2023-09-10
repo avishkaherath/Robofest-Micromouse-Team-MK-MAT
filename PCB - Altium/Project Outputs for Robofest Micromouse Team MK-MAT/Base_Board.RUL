@@ -1,0 +1,14 @@
+DRC Rules Export File for PCB: C:\Users\acham\Documents\Projects\Robofest Micromouse Team MK-MAT\Base_Board.PcbDoc
+RuleKind=Width|RuleName=Schematic Width Constraint_8|Scope=Board|Minimum=40.00
+RuleKind=Width|RuleName=Schematic Width Constraint_7|Scope=Board|Minimum=40.00
+RuleKind=Width|RuleName=Schematic Width Constraint_6|Scope=Board|Minimum=40.00
+RuleKind=Width|RuleName=Schematic Width Constraint_5|Scope=Board|Minimum=40.00
+RuleKind=Width|RuleName=Schematic Width Constraint_4|Scope=Board|Minimum=60.00
+RuleKind=Width|RuleName=Schematic Width Constraint_3|Scope=Board|Minimum=60.00
+RuleKind=Width|RuleName=Schematic Width Constraint_2|Scope=Board|Minimum=60.00
+RuleKind=Width|RuleName=Schematic Width Constraint_1|Scope=Board|Minimum=60.00
+RuleKind=Width|RuleName=Schematic Width Constraint|Scope=Board|Minimum=40.00
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=10.00
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=20.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
