@@ -86,8 +86,14 @@ void left90() {
   rightEncoder = 0;
   while (rightEncoder < turnStep) {
     int error = turnStep - rightEncoder;
-    leftPwm = int(leftBase + error * 0.5);
-    rightPwm = int(rightBase + error * 0.5);
+    leftPwm = int(leftTurnBase + error * 0.5);
+    if (leftPwm > 255){
+      leftPwm = 255;
+    }
+    rightPwm = int(rightTurnBase + error * 0.5);
+    if (rightPwm > 255){
+      rightPwm = 255;
+    }
     turnLeft();
   }
   mBreak();
@@ -97,10 +103,16 @@ void right90() {
   int turnStep = 100;
   leftEncoder = 0;
   while (leftEncoder < turnStep) {
-    int error = turnStep - rightEncoder;
-    leftPwm = int(leftBase + error * 0.5);
-    rightPwm = int(rightBase + error * 0.5);
-    turnright();
+    int error = turnStep - leftEncoder;
+    leftPwm = int(leftTurnBase + error * 0.5);
+    if (leftPwm > 255){
+      leftPwm = 255;
+    }
+    rightPwm = int(rightTurnBase + error * 0.5);
+    if (rightPwm > 255){
+      rightPwm = 255;
+    }
+    turnRight();
   }
   mBreak();
 }

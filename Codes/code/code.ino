@@ -11,16 +11,21 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(ENCL1), countLeftEnc, RISING);
   attachInterrupt(digitalPinToInterrupt(ENCR1), countRightEnc, RISING);
   Serial.begin(9600);
-  delay(1000);
+  delay(100);
   Serial.println("start");
   left90();
-  Serial.print(leftEncoder);
-  Serial.print(" , ");
-  Serial.println(rightEncoder);
+//  delay(1000);
+//  mBreak();
+  delay(500);
+  right90();
+//  delay(1000);
+//  mBreak();
+//  delay(100);
 }
 
 void loop() {
-  if ( millis() - lastMilli > 100) {
-
-  }
+  Serial.print(leftEncoder);
+  Serial.print(" , ");
+  Serial.println(rightEncoder);
+  delay(500);
 }
