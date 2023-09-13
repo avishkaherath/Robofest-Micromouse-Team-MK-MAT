@@ -87,56 +87,6 @@ void idle() {
 }
 //----------------------------------------
 
-void left90() {
-  int turnStep = 200;
-  rightEncoder = 0;
-  leftEncoder =0;
-  while (rightEncoder-leftEncoder < turnStep) {
-    int error = turnStep - (rightEncoder-leftEncoder);
-    leftPwm = int(leftTurnBase + error * 0.5);
-    if (leftPwm > 255){
-      leftPwm = 255;
-    }
-    rightPwm = int(rightTurnBase + error * 0.5);
-    if (rightPwm > 255){
-      rightPwm = 255;
-    }
-    turnLeft();
-    delay(20);
-  }
-  mBreak();
-  rightPwm = rightBase;
-  leftPwm = leftBase;
-}
-
-
-
-void right90() {
-  
-  int turnStep = 200;
-  leftEncoder = 0;
-  rightEncoder = 0;
-  while (leftEncoder-rightEncoder < turnStep) {
-    int error = turnStep - (leftEncoder - rightEncoder);
-    leftPwm = int(leftTurnBase + error * 0.5);
-    if (leftPwm > 255){
-      leftPwm = 255;
-    }
-    rightPwm = int(rightTurnBase + error * 0.5);
-    if (rightPwm > 255){
-      rightPwm = 255;
-    }
-    turnRight();
-    delay(20);
-  }
-  mBreak();
-  leftPwm = leftBase;
-  rightPwm = rightBase;
-}
-
-
-
-
 
 
 //// define motor class

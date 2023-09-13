@@ -1,6 +1,7 @@
 #include "pin_declare.h"
 #include "variables.h"
 #include "motor_without_lib.h"
+#include "Turns.h"
 
 static unsigned long lastMilli = 0;
 static unsigned long lastMilli1 = 0;
@@ -13,18 +14,20 @@ void setup() {
   Serial.begin(115200);
   delay(100);
   Serial.println("start");
-    forward();
-    delay(500);
-    mBreak();
-    delay(500);
-    reverse();
-    delay(500);
-    mBreak();
-    delay(500);
+//    forward();
+//    delay(500);
+//    mBreak();
+//    delay(500);
+//    reverse();
+//    delay(500);
+//    mBreak();
+//    delay(500);
 //  lastMilli1 = millis();
 }
  
 void loop() {
+ rightAboutTurn();
+  delay(1000);
 
 //  if (millis()-lastMilli1 < 2000) {
 //    forward();
