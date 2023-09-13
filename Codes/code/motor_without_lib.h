@@ -37,13 +37,13 @@ void rightBackward(int Pwm) {
 }
 
 void leftBreak() {
-  analogWrite(PINL1, 1);
-  analogWrite(PINL2, 1);
+  digitalWrite(PINL1, HIGH);
+  digitalWrite(PINL2, HIGH);
 }
 
 void rightBreak() {
-  analogWrite(PINR1, 1);
-  analogWrite(PINR2, 1);
+  digitalWrite(PINR1, HIGH);
+  digitalWrite(PINR2, HIGH);
 }
 
 //--------------------------------------------------------------------------------
@@ -88,10 +88,11 @@ void idle() {
 //----------------------------------------
 
 void left90() {
-  int turnStep = 100;
+  int turnStep = 200;
   rightEncoder = 0;
-  while (rightEncoder < turnStep) {
-    int error = turnStep - rightEncoder;
+  leftEncoder =0;
+  while (rightEncoder-leftEncoder < turnStep) {
+    int error = turnStep - (rightEncoder-leftEncoder);
     leftPwm = int(leftTurnBase + error * 0.5);
     if (leftPwm > 255){
       leftPwm = 255;
@@ -104,13 +105,19 @@ void left90() {
     delay(20);
   }
   mBreak();
+  rightPwm = rightBase;
+  leftPwm = leftBase;
 }
 
+
+
 void right90() {
-  int turnStep = 100;
+  
+  int turnStep = 200;
   leftEncoder = 0;
-  while (leftEncoder < turnStep) {
-    int error = turnStep - leftEncoder;
+  rightEncoder = 0;
+  while (leftEncoder-rightEncoder < turnStep) {
+    int error = turnStep - (leftEncoder - rightEncoder);
     leftPwm = int(leftTurnBase + error * 0.5);
     if (leftPwm > 255){
       leftPwm = 255;
@@ -123,7 +130,15 @@ void right90() {
     delay(20);
   }
   mBreak();
+  leftPwm = leftBase;
+  rightPwm = rightBase;
 }
+
+
+
+
+
+
 //// define motor class
 //class motor {
 //  public:
