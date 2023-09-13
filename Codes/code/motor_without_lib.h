@@ -95,6 +95,7 @@ void left90() {
       rightPwm = 255;
     }
     turnLeft();
+    delay(20);
   }
   mBreak();
 }
@@ -113,6 +114,7 @@ void right90() {
       rightPwm = 255;
     }
     turnRight();
+    delay(20);
   }
   mBreak();
 }
