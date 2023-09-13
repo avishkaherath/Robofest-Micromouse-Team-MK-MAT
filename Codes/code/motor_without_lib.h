@@ -69,8 +69,14 @@ void turnRight() {
 }
 
 void mBreak() {
-  leftBreak();
-  rightBreak();
+//  reverse();
+//  delay(20);
+  analogWrite(PINL1, 255);
+  analogWrite(PINL2, 255);
+  analogWrite(PINR1, 255);
+  analogWrite(PINR2, 255);
+//  leftBreak();
+//  rightBreak();
 }
 
 void idle() {
