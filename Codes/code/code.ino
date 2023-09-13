@@ -13,27 +13,33 @@ void setup() {
   Serial.begin(115200);
   delay(100);
   Serial.println("start");
-//  left90();
-
+  forward();
+  delay(500);
+  mBreak();
+  delay(100);
+  reverse();
+  delay(500);
+  mBreak();
 }
 
 void loop() {
-//  if (millis() - lastMilli > 100) {
-//    Serial.print(leftEncoder);
-//    Serial.print(" , ");
-//    Serial.println(rightEncoder);
-//    leftEncoder = 0;
-//    rightEncoder = 0;
-//    lastMilli = millis();
-//  }
-  Serial.println("turn left by 90 degree");
-  left90();
-  //delay(1000);
-  Serial.println("turn right by 90 degree");
-  //mBreak();
-  delay(250);
-  right90();
-  //delay(1000);
-  //mBreak();
-  delay(250);
+  if (millis() - lastMilli > 100) {
+    Serial.print(leftEncoder);
+    Serial.print(" , ");
+    Serial.println(rightEncoder);
+    leftEncoder = 0;
+    rightEncoder = 0;
+    lastMilli = millis();
+  }
+  
+//  Serial.println("turn left by 90 degree");
+//  left90();
+//  //delay(1000);
+//  Serial.println("turn right by 90 degree");
+//  //mBreak();
+//  delay(250);
+//  right90();
+//  //delay(1000);
+//  //mBreak();
+//  delay(250);
 }
