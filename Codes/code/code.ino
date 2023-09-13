@@ -15,8 +15,6 @@ void setup() {
   Serial.println("start");
 //  left90();
 
- 
-
 }
 
 void loop() {
