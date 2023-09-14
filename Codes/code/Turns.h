@@ -104,12 +104,12 @@ void rightAboutTurn()
   while (leftEncoder - rightEncoder <= param1 * 2 )
   {
     int   dif = (leftEncoder - rightEncoder) / 2;
-    rightPwm = int(75 + 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
+    rightPwm = int(72 + 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
     leftPwm = int(70 + 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
     turnRight();
     delay(10);
   }
-  rightPwm = 140;
+  rightPwm = 137;
   leftPwm = 135;
   leftEncoder = 0;
   rightEncoder = 0;
@@ -123,7 +123,7 @@ void rightAboutTurn()
   while (leftEncoder - rightEncoder <= param1 * 2)
   {
     int    dif = (leftEncoder - rightEncoder) / 2;
-    rightPwm = int(140 - 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
+    rightPwm = int(137 - 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
     leftPwm = int(135 - 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
     turnRight();
     delay(10);
@@ -139,8 +139,8 @@ void rightAboutTurn()
 
 void leftAboutTurn()
 {
-  int param1 = 32;
-  int param2 = 11;            // increase to increase turning angle
+  int param1 = 30;
+  int param2 = 8;            // increase to increase turning angle
   
   leftEncoder = 0;
   rightEncoder = 0;
@@ -149,12 +149,12 @@ void leftAboutTurn()
   {
     int   dif = (rightEncoder - leftEncoder) / 2;
     rightPwm = int(75 + 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
-    leftPwm = int(70 + 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
+    leftPwm = int(73 + 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
     turnLeft();
     delay(10);
   }
   rightPwm = 140;
-  leftPwm = 135;
+  leftPwm = 137;
   leftEncoder = 0;
   rightEncoder = 0;
   while (rightEncoder - leftEncoder <= param2 * 2)
@@ -168,7 +168,7 @@ void leftAboutTurn()
   {
     int    dif = (rightEncoder - leftEncoder) / 2;
     rightPwm = int(140 - 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
-    leftPwm = int(135 - 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
+    leftPwm = int(137 - 85 / (1 + pow(2.73, ((param1 /2 - dif) * 0.1))));
     turnLeft();
     delay(10);
   }

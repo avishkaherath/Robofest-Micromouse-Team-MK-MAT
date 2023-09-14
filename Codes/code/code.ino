@@ -32,8 +32,8 @@ void loop() {
   leftAboutTurn();
   delay(1000);
 
-  turnBack();
-  delay(1000);
+//  turnBack();
+//  delay(1000);
   
 
 //  if (millis()-lastMilli1 < 2000) {
