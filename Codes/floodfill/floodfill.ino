@@ -1,3 +1,5 @@
+#include "API.h"
+
 int x = 0;
 int y = 0;
 int orient = 0;
@@ -738,7 +740,44 @@ void appendDestination(int x, int y, int flood[14][14]) {
     append(x);
 }
 
-void main() {
+void shortestPath(int x, int y, int xprev, int yprev, int orient, int state) {
+  while (true) {
+    show(flood2, state);
+    bool L = API.wallLeft();
+    bool R = API.wallRight();
+    bool F = API.wallFront();
+    // updateWalls(x, y, orient, L, R, F);
+
+    if (flood2[y][x] != 1) {
+      char direction = toMove2(flood2, x, y, xprev, yprev, orient);
+
+      if (direction == 'L') {
+        API.turnLeft();
+        orient = orientation(orient, 'L');
+      } else if (direction == 'R') {
+        API.turnRight();
+        orient = orientation(orient, 'R');
+      } else if (direction == 'B') {
+        API.turnLeft();
+        orient = orientation(orient, 'L');
+        API.turnLeft();
+        orient = orientation(orient, 'L');
+      }
+
+      show(flood2, state);
+      API.moveForward();
+      xprev = x;
+      yprev = y;
+      // You'll need to implement the updateCoordinates function for Arduino
+      // x, y = updateCoordinates(x, y, orient);
+    } else {
+      break;
+    }
+  }
+}
+
+void setup() {
+  // put your setup code here, to run once:
     int x = 0;
     int y = 0;
     int xprev = 0;
@@ -835,46 +874,6 @@ void main() {
         yprev = y;
         x, y = updateCoordinates(x, y, orient);
     }
-}
-
-void shortestPath(int x, int y, int xprev, int yprev, int orient, int state) {
-  while (true) {
-    show(flood2, state);
-    bool L = API.wallLeft();
-    bool R = API.wallRight();
-    bool F = API.wallFront();
-    // updateWalls(x, y, orient, L, R, F);
-
-    if (flood2[y][x] != 1) {
-      char direction = toMove2(flood2, x, y, xprev, yprev, orient);
-
-      if (direction == 'L') {
-        API.turnLeft();
-        orient = orientation(orient, 'L');
-      } else if (direction == 'R') {
-        API.turnRight();
-        orient = orientation(orient, 'R');
-      } else if (direction == 'B') {
-        API.turnLeft();
-        orient = orientation(orient, 'L');
-        API.turnLeft();
-        orient = orientation(orient, 'L');
-      }
-
-      show(flood2, state);
-      API.moveForward();
-      xprev = x;
-      yprev = y;
-      // You'll need to implement the updateCoordinates function for Arduino
-      // x, y = updateCoordinates(x, y, orient);
-    } else {
-      break;
-    }
-  }
-}
-
-void setup() {
-  // put your setup code here, to run once:
 
 }
 
