@@ -29,6 +29,13 @@ void loop() {
  rightAboutTurn();
   delay(1000);
 
+  leftAboutTurn();
+  delay(1000);
+
+  turnBack();
+  delay(1000);
+  
+
 //  if (millis()-lastMilli1 < 2000) {
 //    forward();
 //  }
