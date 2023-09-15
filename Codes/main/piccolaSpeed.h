@@ -19,6 +19,7 @@ void cellStart()
     leftBase=180;
     encoderRightCount= encoderRightCount + 267;
     encoderLeftCount= encoderLeftCount + 267;
+    
     while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
     {
         wallFollow();
