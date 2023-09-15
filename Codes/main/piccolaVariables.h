@@ -1,5 +1,5 @@
-int leftBase = 81;
-int rightBase = 82;
+int leftBase = 82;        //earlier 81
+int rightBase = 88;       //earlier 82
 int leftPwm = leftBase;
 int rightPwm = rightBase;
 int leftTurnBase = 120;
@@ -40,7 +40,7 @@ float rightError = 0;
 float rightLastError = 0;
 float rightDiff = 0;
 
-float wallP = 0.2;
+float wallP = 0.22;
 float wallD = 2; 
 
 float wallError = 0;

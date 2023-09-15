@@ -11,7 +11,7 @@ void turnBack()
   {
     dif = leftEncoder - encoderLeftCount + 50;
     rightPwm = int(80 + 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
-    leftPwm = int(80 + 50 / (1 + pow(2.73, ((40 - dif) * 0.05))));
+    leftPwm = int(80 + 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
     turnRight();
     delay(10);
   }
@@ -57,7 +57,7 @@ void rightAboutTurn()
   {
     dif = leftEncoder - encoderLeftCount + 50;
     rightPwm = int(80 + 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
-    leftPwm = int(80 + 50 / (1 + pow(2.73, ((40 - dif) * 0.05))));
+    leftPwm = int(80 + 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
     turnRight();
     delay(10);
   }
@@ -103,7 +103,7 @@ void leftAboutTurn()
   {
     dif = leftEncoder - encoderLeftCount + 50;
     rightPwm = int(80 + 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
-    leftPwm = int(80 + 50 / (1 + pow(2.73, ((40 - dif) * 0.05))));
+    leftPwm = int(80 + 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
     turnLeft();
     delay(10);
   }
