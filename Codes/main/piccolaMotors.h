@@ -93,12 +93,12 @@ void reverseBase()
 
 void turnRight()
 {
-    leftForward(leftBase);
-    rightReverse(rightBase);
+    leftForward(leftPwm);
+    rightReverse(rightPwm);
 }
 
 void turnLeft()
 {
-    leftReverse(leftBase);
-    rightForward(rightBase);
+    leftReverse(leftPwm);
+    rightForward(rightPwm);
 }

@@ -49,14 +49,14 @@ void cellForward()
     leftWallAvailable = 0;
     rightWallAvailable = 0;
     frontWallAvailable = 0;
-    encoderLeftCount = encoderLeftCount + 1123;
-    encoderRightCount = encoderRightCount + 1123;
+    encoderLeftCount = encoderLeftCount + 80; //1123
+    encoderRightCount = encoderRightCount + 80; //1123
     while (leftEncoder <= encoderLeftCount || rightEncoder <= encoderRightCount)
     {
         wallFollow();
     }
-    encoderLeftCount = encoderLeftCount + 150;
-    encoderRightCount = encoderRightCount + 150;
+    encoderLeftCount = encoderLeftCount + 50;
+    encoderRightCount = encoderRightCount + 50;
     while (leftEncoder <= encoderLeftCount || rightEncoder <= encoderRightCount)
     {
         wallFollow();
@@ -86,6 +86,7 @@ void cellForward()
           rightWallAvailable= rightWallAvailable - 1;
         }
     }
+    brake();
 }
 
 void cellFastForward()
