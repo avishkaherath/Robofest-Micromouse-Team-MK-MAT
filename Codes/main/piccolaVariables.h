@@ -1,7 +1,10 @@
 int leftBase = 81;
 int rightBase = 82;
-int leftPwm;
-int rightPwm;
+int leftPwm = leftBase;
+int rightPwm = rightBase;
+int leftTurnBase = 120;
+int rightTurnBase = 120;
+byte state=0;
 
 unsigned long leftEncoder = 0;
 unsigned long rightEncoder = 0;

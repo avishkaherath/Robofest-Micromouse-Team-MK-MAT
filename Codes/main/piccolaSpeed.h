@@ -13,6 +13,7 @@ void cellStart()
         rightBase = 70 + int(dif/2);
         leftBase = 70 + int(dif/2);
         forwardBase();
+        delay(10);
     }
     rightBase=176;
     leftBase=180;
@@ -21,6 +22,7 @@ void cellStart()
     while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
     {
         wallFollow();
+        delay(10);
     }
     encoderLeftCount = encoderLeftCount + 150;
     encoderRightCount = encoderRightCount + 150;
@@ -52,6 +54,7 @@ void cellStart()
         {
           rightWallAvailable= rightWallAvailable - 1;
         }
+        delay(10);
     }
 }
 
