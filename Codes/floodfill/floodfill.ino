@@ -7,6 +7,7 @@ int cell = 0;
 
 int front = 0;
 int rear = 0;
+
 #define queue_size 200
 
 int cells[14][14] = {
@@ -61,7 +62,7 @@ int flood2[14][14] = {
 };
 
 // Define a queue
-int queue[queue_size]; // Adjust the size as needed
+int queue[queue_size] = { 0 }; // Adjust the size as needed
 
 int orientation(int orient, char turning) {
     if (turning == 'L') {
@@ -91,27 +92,29 @@ int orientation(int orient, char turning) {
 
 // Custom append function to add elements to the array
 void append(int value) {
-  if (front < queue_size) {
-    queue[front] = value;
-    front++;
+  // Check if the queue is full
+  if (rear == queue_size) {
+    Serial.println("Queue is full. Cannot append.");
   } else {
-    Serial.println("Array is full. Cannot append more elements.");
+    queue[rear] = value;
+    rear++;
   }
 }
 
 // Custom pop function to remove and return the last element from the array
 int pop() {
-  if (queue_size > 0) {
-    rear--;
-    return queue[rear];
+  // Check if the queue is empty
+  if (front == rear) {
+    Serial.println("Queue is empty. Nothing to pop.");
+    return -1; // Return a sentinel value to indicate an empty queue
   } else {
-    Serial.println("Array is empty. Cannot pop elements.");
-    return -1; // Return a sentinel value to indicate an error or empty array
+    int value = queue[front];
+    front++;
+    return value;
   }
 }
 
-
-int updateCoordinates(int &x, int &y, int orient) {
+int updateCoordinates(int x, int y, int orient) {
     if (orient == 0) {
         y++;
     } else if (orient == 1) {
@@ -233,7 +236,7 @@ bool isAccessible(int x, int y, int x1, int y1) {
     return false;
 }
 
-void getSurrounds(int x, int y, int &x0, int &y0, int &x1, int &y1, int &x2, int &y2, int &x3, int &y3) {
+int getSurrounds(int x, int y, int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3) {
     x3 = x - 1;
     y3 = y;
     x0 = x;
@@ -248,6 +251,7 @@ void getSurrounds(int x, int y, int &x0, int &y0, int &x1, int &y1, int &x2, int
     if (y0 >= 14) {
         y0 = -1;
     }
+    return x0, y0, x1, y1, x2, y2, x3, y3;
 }
 
 void changeDestination(int maze[14][14], int destinationx, int destinationy) {
@@ -257,21 +261,18 @@ void changeDestination(int maze[14][14], int destinationx, int destinationy) {
         }
     }
 
-    int queueX[100]; // Use arrays for queue
-    int queueY[100];
+    queue = { 0 }; // Use arrays for queue
     maze[destinationy][destinationx] = 0;
 
-    int front = 0;
-    int rear = 0;
+    front = 0;
+    rear = 0;
 
-    queueY[rear] = destinationy;
-    queueX[rear] = destinationx;
-    rear++;
+    append(destinationy);
+    append(destinationx);
 
     while (front != rear) {
-        int yrun = queueY[front];
-        int xrun = queueX[front];
-        front++;
+        int yrun = pop();
+        int xrun = pop();
 
         int x0, y0, x1, y1, x2, y2, x3, y3;
         getSurrounds(xrun, yrun, x0, y0, x1, y1, x2, y2, x3, y3);
@@ -279,33 +280,29 @@ void changeDestination(int maze[14][14], int destinationx, int destinationy) {
         if (x0 >= 0 && y0 >= 0) {
             if (maze[y0][x0] == 255) {
                 maze[y0][x0] = maze[yrun][xrun] + 1;
-                queueY[rear] = y0;
-                queueX[rear] = x0;
-                rear++;
+                append(y0);
+                append(x0);
             }
         }
         if (x1 >= 0 && y1 >= 0) {
             if (maze[y1][x1] == 255) {
                 maze[y1][x1] = maze[yrun][xrun] + 1;
-                queueY[rear] = y1;
-                queueX[rear] = x1;
-                rear++;
+                append(y1);
+                append(x1);
             }
         }
         if (x2 >= 0 && y2 >= 0) {
             if (maze[y2][x2] == 255) {
                 maze[y2][x2] = maze[yrun][xrun] + 1;
-                queueY[rear] = y2;
-                queueX[rear] = x2;
-                rear++;
+                append(y2);
+                append(x2);
             }
         }
         if (x3 >= 0 && y3 >= 0) {
             if (maze[y3][x3] == 255) {
                 maze[y3][x3] = maze[yrun][xrun] + 1;
-                queueY[rear] = y3;
-                queueX[rear] = x3;
-                rear++;
+                append(y3);
+                append(x3);
             }
         }
     }
@@ -318,34 +315,28 @@ void floodFill2(int maze[14][14]) {
         }
     }
 
-    int queueX[100]; // Use arrays for queue
-    int queueY[100];
+    queue = { 0 }; // Use arrays for queue
 
     flood2[6][6] = 1;
     flood2[7][6] = 1;
     flood2[6][7] = 1;
     flood2[7][7] = 1;
 
-    int front = 0;
-    int rear = 0;
+    front = 0;
+    rear = 0;
 
-    queueY[rear] = 6;
-    queueX[rear] = 6;
-    rear++;
-    queueY[rear] = 7;
-    queueX[rear] = 6;
-    rear++;
-    queueY[rear] = 6;
-    queueX[rear] = 7;
-    rear++;
-    queueY[rear] = 7;
-    queueX[rear] = 7;
-    rear++;
+    append(6);
+    append(6);
+    append(7);
+    append(6);
+    append(6);
+    append(7);
+    append(7);
+    append(7);
 
     while (front != rear) {
-        int yrun = queueY[front];
-        int xrun = queueX[front];
-        front++;
+        int yrun = pop();
+        int xrun = pop();
 
         int x0, y0, x1, y1, x2, y2, x3, y3;
         getSurrounds(xrun, yrun, x0, y0, x1, y1, x2, y2, x3, y3);
@@ -354,9 +345,8 @@ void floodFill2(int maze[14][14]) {
             if (maze[y0][x0] == 0) {
                 if (isAccessible(xrun, yrun, x0, y0)) {
                     maze[y0][x0] = maze[yrun][xrun] + 1;
-                    queueY[rear] = y0;
-                    queueX[rear] = x0;
-                    rear++;
+                    append(y0);
+                    append(x0);
                 }
             }
         }
@@ -364,9 +354,8 @@ void floodFill2(int maze[14][14]) {
             if (maze[y1][x1] == 0) {
                 if (isAccessible(xrun, yrun, x1, y1)) {
                     maze[y1][x1] = maze[yrun][xrun] + 1;
-                    queueY[rear] = y1;
-                    queueX[rear] = x1;
-                    rear++;
+                    append(y1);
+                    append(x1);
                 }
             }
         }
@@ -374,9 +363,8 @@ void floodFill2(int maze[14][14]) {
             if (maze[y2][x2] == 0) {
                 if (isAccessible(xrun, yrun, x2, y2)) {
                     maze[y2][x2] = maze[yrun][xrun] + 1;
-                    queueY[rear] = y2;
-                    queueX[rear] = x2;
-                    rear++;
+                    append(y2);
+                    append(x2);
                 }
             }
         }
@@ -384,9 +372,8 @@ void floodFill2(int maze[14][14]) {
             if (maze[y3][x3] == 0) {
                 if (isAccessible(xrun, yrun, x3, y3)) {
                     maze[y3][x3] = maze[yrun][xrun] + 1;
-                    queueY[rear] = y3;
-                    queueX[rear] = x3;
-                    rear++;
+                    append(y3);
+                    append(x3);
                 }
             }
         }
@@ -397,7 +384,6 @@ void floodFill3(int maze[14][14], int queue[queue_size]) {
     while (front != rear) {
         int yrun = pop();
         int xrun = pop();
-        front++;
 
         int x0, y0, x1, y1, x2, y2, x3, y3;
         getSurrounds(xrun, yrun, x0, y0, x1, y1, x2, y2, x3, y3);
@@ -408,7 +394,6 @@ void floodFill3(int maze[14][14], int queue[queue_size]) {
                     maze[y0][x0] = maze[yrun][xrun] + 1;
                     append(y0);
                     append(x0);
-                    rear++;
                 }
             }
         }
@@ -418,7 +403,6 @@ void floodFill3(int maze[14][14], int queue[queue_size]) {
                     maze[y1][x1] = maze[yrun][xrun] + 1;
                     append(y1);
                     append(x1);
-                    rear++;
                 }
             }
         }
@@ -428,7 +412,6 @@ void floodFill3(int maze[14][14], int queue[queue_size]) {
                     maze[y2][x2] = maze[yrun][xrun] + 1;
                     append(y2);
                     append(x2);
-                    rear++;
                 }
             }
         }
@@ -438,7 +421,6 @@ void floodFill3(int maze[14][14], int queue[queue_size]) {
                     maze[y3][x3] = maze[yrun][xrun] + 1;
                     append(y3);
                     append(x3);
-                    rear++;
                 }
             }
         }
@@ -483,6 +465,7 @@ char toMove(int maze[14][14], int x, int y, int xprev, int yprev, int orient) {
     int minVal = minVals[0];
     int minCell = 0;
     int noMovements = 0;
+
     for (int i = 0; i < 4; i++) {
         if (minVals[i] != 1000) {
             noMovements++;
@@ -585,7 +568,7 @@ void show(int flood[14][14], int variable) {
             }
 
             // API.setText(x, y, a);
-            // API.setText(x, y, String(flood2[y][x]));
+            API.setText(x, y, String(flood2[y][x]));
             // API.setText(x, y, String(variable));
         }
     }
@@ -769,9 +752,9 @@ void shortestPath(int x, int y, int xprev, int yprev, int orient, int state) {
       xprev = x;
       yprev = y;
       // You'll need to implement the updateCoordinates function for Arduino
-      // x, y = updateCoordinates(x, y, orient);
+      x, y = updateCoordinates(x, y, orient);
     } else {
-      break;
+        break;
     }
   }
 }
@@ -787,7 +770,7 @@ void setup() {
     bool shortPath = false;
 
     while (true) {
-        // API.setColor(x, y, 'red');
+        API.setColor(x, y, 'red');
         bool L = API.wallLeft();
         bool R = API.wallRight();
         bool F = API.wallFront();
@@ -856,20 +839,20 @@ void setup() {
         }
 
         if (direction == "L") {
-            // API.turnLeft();
+            API.turnLeft();
             orient = orientation(orient, 'L');
         } else if (direction == "R") {
-            // API.turnRight();
+            API.turnRight();
             orient = orientation(orient, 'R');
         } else if (direction == "B") {
-            // API.turnLeft();
+            API.turnLeft();
             orient = orientation(orient, 'L');
-            // API.turnLeft();
+            API.turnLeft();
             orient = orientation(orient, 'L');
         }
 
-        // show(flood, state);
-        // API.moveForward();
+        show(flood, state);
+        API.moveForward();
         xprev = x;
         yprev = y;
         x, y = updateCoordinates(x, y, orient);
