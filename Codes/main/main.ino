@@ -27,7 +27,7 @@ void setup() {
 
 void loop() {
 
-  rightTurn90();
+  rightAboutTurn();
   delay(1000);
 //    if(wallLeft() && wallRight() && wallFront()){ //turnback
 //      turnBack();
