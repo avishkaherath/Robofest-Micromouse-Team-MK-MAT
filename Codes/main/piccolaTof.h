@@ -225,7 +225,7 @@ bool wallRight(){
 
 bool wallFront(){
   tofStart();
-  if(tof[2] < 60){
+  if(tof[2] < 120){
     return true;
     }
     else{

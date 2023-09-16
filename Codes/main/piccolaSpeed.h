@@ -1,7 +1,7 @@
 void goCell(){
 
-    encoderRightCount= encoderRightCount + 230;
-    encoderLeftCount= encoderLeftCount + 230;
+    encoderRightCount= encoderRightCount + 240;
+    encoderLeftCount= encoderLeftCount + 240;
     while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
     {
         wallFollow();
