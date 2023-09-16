@@ -67,15 +67,15 @@ void rightAboutTurn()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
-  encoderRightCount = encoderRightCount + 46;
-  encoderLeftCount = encoderLeftCount + 46;
+  encoderRightCount = encoderRightCount + 48;
+  encoderLeftCount = encoderLeftCount + 48;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
     rightPwm = int(80 + 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
     leftPwm = int(80 + 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
     turnRight();
-    delay(10);
+    delay(5);
   }
   rightPwm = rightTurnBase;
   leftPwm = leftTurnBase;
@@ -84,17 +84,17 @@ void rightAboutTurn()
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     turnRight();
-    delay(10);
+    delay(5);
   }
-  encoderRightCount = encoderRightCount + 46;
-  encoderLeftCount = encoderLeftCount + 46;
+  encoderRightCount = encoderRightCount + 48;
+  encoderLeftCount = encoderLeftCount + 48;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
     rightPwm = int(120 - 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
     leftPwm = int(120 - 50 / (1 + pow(2.73, ((25 - dif) * 0.05))));
     turnRight();
-    delay(10);
+    delay(5);
   }
   brake();
   leftPwm = leftBase;
