@@ -23,9 +23,26 @@ void setup() {
     attachInterrupt(digitalPinToInterrupt(ENCL1), countLeftOut1, RISING);
     attachInterrupt(digitalPinToInterrupt(ENCR1), countRightOut1, RISING);
     Serial.begin(9600);
-    turnBack();
 }
 
 void loop() {
-    wallFollow();
+    if(wallLeft() && wallRight() && wallFront()){ //turnback
+      turnBack();
+      }
+    else if(wallLeft() && !wallRight() && !wallFront()){  //leftpid
+      goCell();
+      }
+     else if(!wallLeft() && wallRight() && !wallFront()){ //rightpid
+      goCell();
+      }
+     else if(wallLeft() && wallRight() && !wallFront()){ //wallPid
+      goCell(); 
+      }
+     else if(wallLeft() && !wallRight() && wallFront()){ //turnright
+      rightAboutTurn();
+      }
+      else if(!wallLeft() && wallRight() && wallFront()){ //turnright
+      leftAboutTurn();
+      }
+     
 }

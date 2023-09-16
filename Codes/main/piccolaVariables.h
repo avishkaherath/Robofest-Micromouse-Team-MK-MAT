@@ -63,6 +63,8 @@ int start = 0;
 
 int time1;
 
+bool L,R,F;
+int x,y;
 
 boolean left,right,front;
 int cell =0;
@@ -70,3 +72,4 @@ int cell =0;
 int jump = 0;
 int preState = 0;
 int selectMode = -1;
+int state;

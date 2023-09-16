@@ -202,3 +202,35 @@ void printWallState()
     }
     Serial.println("");
 }
+
+bool wallLeft(){
+  tofStart();
+  if(tof[0] < 60){
+    return true;
+    }
+    else{
+      return false;
+      }
+  }
+
+bool wallRight(){
+  tofStart();
+  if(tof[4] < 60){
+    return true;
+    }
+    else{
+      return false;
+      }
+  }
+
+bool wallFront(){
+  tofStart();
+  if(tof[2] < 60){
+    return true;
+    }
+    else{
+      return false;
+      }
+  }
+
+  

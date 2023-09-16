@@ -1,3 +1,15 @@
+void goCell(){
+
+    encoderRightCount= encoderRightCount + 230;
+    encoderLeftCount= encoderLeftCount + 230;
+    while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+    {
+        wallFollow();
+        delay(10);
+    }
+    brake();
+}
+
 void cellStart()
 {
     leftWallAvailable = 0;
