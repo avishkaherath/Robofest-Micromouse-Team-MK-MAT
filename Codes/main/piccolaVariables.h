@@ -2,8 +2,8 @@ int leftBase = 82;        //earlier 81
 int rightBase = 88;       //earlier 82
 int leftPwm = leftBase;
 int rightPwm = rightBase;
-int leftTurnBase = 120;
-int rightTurnBase = 120;
+int leftTurnBase = 100;
+int rightTurnBase = 100;
 //byte state=0;  // remove this in final code
 
 unsigned long leftEncoder = 0;
@@ -26,22 +26,22 @@ int frontWallAvailable = 0;
 int rightWall  = 1;
 int leftWall = 1;
 
-float leftP = 0.15;
-float leftD = 4;
+float leftP = 0.15; //0.15
+float leftD = 4;  //4
 
 float leftError = 0;
 float leftLastError = 0;
 float leftDiff = 0;
 
-float rightP = 0.2;
-float rightD = 2;
+float rightP = 0.2; //0.2
+float rightD = 2.5;  //2
 
 float rightError = 0;
 float rightLastError = 0;
 float rightDiff = 0;
 
-float wallP = 0.22;
-float wallD = 2; 
+float wallP = 0.22;  //0.22
+float wallD = 2; //2
 
 float wallError = 0;
 float wallLastError = 0;

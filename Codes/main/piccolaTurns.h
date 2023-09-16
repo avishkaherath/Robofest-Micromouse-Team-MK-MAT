@@ -45,14 +45,30 @@ void turnBack()
 
 
 //-------------------------------- Turn right by 90 degree about axis-------------------------
+void rightTurn90(){
+  rightEncoder =0;
+  leftEncoder = 0;
+    rightPwm = rightTurnBase;
+  leftPwm = leftTurnBase;
+  encoderRightCount = encoderRightCount + 120;
+  encoderLeftCount = encoderLeftCount + 120;
+  while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+  {
+    turnRight();
+    delay(10);
+  }
+  brake();
+}
+
+
 void rightAboutTurn()
 {
   encoderLeftCount = 0;
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
-  encoderRightCount = encoderRightCount + 50;
-  encoderLeftCount = encoderLeftCount + 50;
+  encoderRightCount = encoderRightCount + 46;
+  encoderLeftCount = encoderLeftCount + 46;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
@@ -70,8 +86,8 @@ void rightAboutTurn()
     turnRight();
     delay(10);
   }
-  encoderRightCount = encoderRightCount + 50;
-  encoderLeftCount = encoderLeftCount + 50;
+  encoderRightCount = encoderRightCount + 46;
+  encoderLeftCount = encoderLeftCount + 46;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;

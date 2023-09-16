@@ -26,23 +26,26 @@ void setup() {
 }
 
 void loop() {
-    if(wallLeft() && wallRight() && wallFront()){ //turnback
-      turnBack();
-      }
-    else if(wallLeft() && !wallRight() && !wallFront()){  //leftpid
-      goCell();
-      }
-     else if(!wallLeft() && wallRight() && !wallFront()){ //rightpid
-      goCell();
-      }
-     else if(wallLeft() && wallRight() && !wallFront()){ //wallPid
-      goCell(); 
-      }
-     else if(wallLeft() && !wallRight() && wallFront()){ //turnright
-      rightAboutTurn();
-      }
-      else if(!wallLeft() && wallRight() && wallFront()){ //turnright
-      leftAboutTurn();
-      }
-     
+
+  rightTurn90();
+  delay(1000);
+//    if(wallLeft() && wallRight() && wallFront()){ //turnback
+//      turnBack();
+//      }
+//    else if(wallLeft() && !wallRight() && !wallFront()){  //leftpid
+//      goCell();
+//      }
+//     else if(!wallLeft() && wallRight() && !wallFront()){ //rightpid
+//      goCell();
+//      }
+//     else if(wallLeft() && wallRight() && !wallFront()){ //wallPid
+//      goCell(); 
+//      }
+//     else if(wallLeft() && !wallRight() && wallFront()){ //turnright
+//      rightAboutTurn();
+//      }
+//      else if(!wallLeft() && wallRight() && wallFront()){ //turnright
+//      leftAboutTurn();
+//      }
+//     
 }
