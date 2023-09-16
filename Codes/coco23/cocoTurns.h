@@ -113,8 +113,8 @@ void leftAboutTurn()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
-  encoderRightCount = encoderRightCount + 50;
-  encoderLeftCount = encoderLeftCount + 50;
+  encoderRightCount = encoderRightCount + 48;
+  encoderLeftCount = encoderLeftCount + 48;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
