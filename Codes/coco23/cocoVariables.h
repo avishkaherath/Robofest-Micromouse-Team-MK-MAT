@@ -30,15 +30,15 @@ int frontWallAvailable = 0;
 int rightWall  = 1;
 int leftWall = 1;
 
-float leftP = 0.15; //0.15
-float leftD = 4;  //4
+float leftP = 0.25; //0.15
+float leftD = 3;  //4
 
 float leftError = 0;
 float leftLastError = 0;
 float leftDiff = 0;
 
 float rightP = 0.2; //0.2
-float rightD = 2.5;  //2
+float rightD = 3;  //2
 
 float rightError = 0;
 float rightLastError = 0;
@@ -51,7 +51,7 @@ float wallError = 0;
 float wallLastError = 0;
 float wallDiff = 0;
 
-float encoderP = 0.2 ;
+float encoderP = 0.2;
 float encoderD = 0; 
 
 float encoderError = 0;

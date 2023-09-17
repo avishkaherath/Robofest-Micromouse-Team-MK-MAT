@@ -212,24 +212,3 @@ void rightSmoothTurn()
         wallFollow();
     }
 }
-
-
-
-//void rightTurn()
-//{
-//    cellBrake();
-//    rightAboutTurn();
-//    cellStart();
-//}
-//void leftTurn()
-//{
-//    cellBrake();
-//    leftAboutTurn();
-//    cellStart();
-//}
-//void cellBack()
-//{
-//    cellBrake();
-//    turnBack();
-//    cellStart();
-//}

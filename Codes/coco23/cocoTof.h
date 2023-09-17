@@ -59,12 +59,12 @@ void tofPid()
     //Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
 
     VL53L0X_RangingMeasurementData_t measure;
-    
+
     tcaselect(4);
     lox53.rangingTest(&measure, false);
     tof[2] = measure.RangeMilliMeter;
     //Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
-    
+
     tcaselect(2);
     uint8_t range2 = lox61.readRange();
     tof[4] = range2;
@@ -188,7 +188,7 @@ void printWallState()
 
 bool wallLeft(){
   tofStart();
-  if(tof[0] < 60){
+  if(tof[0] < 80){
     return true;
     }
     else{
@@ -198,7 +198,7 @@ bool wallLeft(){
 
 bool wallRight(){
   tofStart();
-  if(tof[4] < 60){
+  if(tof[4] < 80){
     return true;
     }
     else{

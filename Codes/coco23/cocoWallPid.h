@@ -1,9 +1,9 @@
 void leftPid()
 {
     Serial.println("leftPid");
-    leftError = 41 - tof[0];
+    leftError = 44 - tof[0];
     leftDiff = leftError - leftLastError;
-    
+
     if (leftDiff > 50)
     {
         leftError = 10;
@@ -72,8 +72,8 @@ void rightPid()
 void wallPid()
 {
   Serial.println("wallPid");
-    wallError = tof[0] - (tof[4]+7);
-    rightLastError = 41 - tof[4];
+    wallError = tof[0] - (tof[4]+9);
+    rightLastError = 44 - tof[4];
     leftLastError = 35 - tof[0];
     
     wallDiff = wallError - wallLastError;
@@ -191,6 +191,7 @@ void wallFollow()
         {
           leftPid();
           forward();
+          //forwardBase();
         }
     }
     else if(tof[0] > 60 && tof[4] > 60)   //no walls
