@@ -17,14 +17,14 @@ void tofSetup()
     Wire.begin();
     
     tcaselect(4);
-    if (!lox53.begin()) {
-    Serial.println(F("Failed to boot VL53L0X L"));
+    if (!lox61.begin()) {
+    Serial.println(F("Failed to boot VL6180X 45 L"));
     while(1);
     }
     
     tcaselect(3);
-    if (!lox53.begin()) {
-    Serial.println(F("Failed to boot VL53L0X R"));
+    if (!lox61.begin()) {
+    Serial.println(F("Failed to boot VL6180X 45 R"));
     while(1);
     }
     
@@ -36,16 +36,28 @@ void tofSetup()
 
     tcaselect(7);
     if (!lox61.begin()) {
-    Serial.println(F("Failed to boot VL6180X L"));
+    Serial.println(F("Failed to boot VL6180X front L"));
     while(1);
     }
     
     tcaselect(2);
     if (!lox61.begin()) {
-    Serial.println(F("Failed to boot VL6180X R"));
+    Serial.println(F("Failed to boot VL6180X front R"));
     while(1);
     }
-    
+
+    tcaselect(0);
+    if (!lox61.begin()) {
+    Serial.println(F("Failed to boot VL6180X back L"));
+    while(1);
+    }
+
+    tcaselect(1);
+    if (!lox61.begin()) {
+    Serial.println(F("Failed to boot VL6180X back R"));
+    while(1);
+    }
+
     Serial.println(" End setup");
     delay(1000);
 }
@@ -58,16 +70,25 @@ void tofPid()
     tof[0] = range1;
     //Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
 
-    VL53L0X_RangingMeasurementData_t measure;
+    tcaselect(2);
+    uint8_t range2 = lox61.readRange();
+    tof[4] = range2;
+    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
 
-    tcaselect(4);
+    VL53L0X_RangingMeasurementData_t measure;
+    tcaselect(6);
     lox53.rangingTest(&measure, false);
     tof[2] = measure.RangeMilliMeter;
     //Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
 
-    tcaselect(2);
-    uint8_t range2 = lox61.readRange();
-    tof[4] = range2;
+    tcaselect(0);
+    uint8_t range3 = lox61.readRange();
+    tof[5] = range3;
+    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
+
+    tcaselect(1);
+    uint8_t range4 = lox61.readRange();
+    tof[6] = range4;
     //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
 }
 
@@ -77,29 +98,18 @@ void tofStart()
     
     tcaselect(6);
     lox53.rangingTest(&measure, false);
-    tof[1] = measure.RangeMilliMeter;
+    tof[2] = measure.RangeMilliMeter;
     //Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
 
     tcaselect(4);
-    lox53.rangingTest(&measure, false);
-    tof[2] = measure.RangeMilliMeter;
-    //Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
+    uint8_t range5 = lox61.readRange();
+    tof[1] = range5;
+    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
 
     tcaselect(3);
-    lox53.rangingTest(&measure, false);
-    tof[3] = measure.RangeMilliMeter;
-    //Serial.print("tof[3] "); Serial.print(tof[3]); Serial.println("");
-}
-
-void printTof()
-{
-    
-    Serial.print(tof[0]);
-    Serial.print(",  ");
-    Serial.print(tof[2]);
-    Serial.print(",  ");
-    Serial.print(tof[4]);
-    Serial.println();
+    uint8_t range6 = lox61.readRange();
+    tof[3] = range6;
+    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
 }
 // --------------------------------------- uncomment this function------------------------------
 void checkWallsCell()  

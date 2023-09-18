@@ -19,7 +19,7 @@ unsigned long encoderRightCount = 0;
 int dif = 0;
 int test = 0;
 
-float tof[5];
+float tof[7];
 int wallAvailable[3];
 int cellWalls[3];
 

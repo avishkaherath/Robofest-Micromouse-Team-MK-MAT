@@ -1,7 +1,6 @@
 QueueArray <byte> queue;
 QueueArray <byte> pathQueue;
 
-
 int cells[14][14] = {
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,},

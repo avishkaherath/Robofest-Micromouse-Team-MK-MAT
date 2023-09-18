@@ -763,6 +763,14 @@ void setup() {
 ////      delay(1000);
  //    wallFollow(); 
 //}
+//      while(true){
+//        leftAboutTurn();
+//        delay(1000);
+////        leftAboutTurn();
+////        delay(1000);
+////        turnBack();
+////        delay(1000);
+//        }
 //
     while (true) {
         if (!wallLeft()) {
