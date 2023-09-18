@@ -5,9 +5,7 @@ void countLeftOut1()
 
 void countRightOut1()
 {
-
   rightEncoder ++;
-
 }
 
 //---------------------------------------------------

@@ -1,3 +1,15 @@
+void goCell(){
+
+    encoderRightCount= encoderRightCount + 240;
+    encoderLeftCount= encoderLeftCount + 240;
+    while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+    {
+        wallFollow();
+        delay(10);
+    }
+    brake();
+}
+
 void cellStart()
 {
     leftWallAvailable = 0;
@@ -13,14 +25,17 @@ void cellStart()
         rightBase = 70 + int(dif/2);
         leftBase = 70 + int(dif/2);
         forwardBase();
+        delay(10);
     }
     rightBase=176;
     leftBase=180;
     encoderRightCount= encoderRightCount + 267;
     encoderLeftCount= encoderLeftCount + 267;
+    
     while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
     {
         wallFollow();
+        delay(10);
     }
     encoderLeftCount = encoderLeftCount + 150;
     encoderRightCount = encoderRightCount + 150;
@@ -52,6 +67,7 @@ void cellStart()
         {
           rightWallAvailable= rightWallAvailable - 1;
         }
+        delay(10);
     }
 }
 

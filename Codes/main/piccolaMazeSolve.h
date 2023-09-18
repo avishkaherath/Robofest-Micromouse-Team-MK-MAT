@@ -225,7 +225,8 @@ void traverse(byte xdes, byte ydes, boolean middleSquare, boolean shortPath, boo
               cellStart();
             }
             else{
-            leftTurn();}
+            leftTurn();
+            }
             
         }
 
@@ -237,7 +238,8 @@ void traverse(byte xdes, byte ydes, boolean middleSquare, boolean shortPath, boo
               cellStart();
             }
             else{
-            rightTurn();}
+            rightTurn();
+            }
         }
 
         else if (dir=='B'){

@@ -1,27 +1,12 @@
 Adafruit_VL53L0X lox53 = Adafruit_VL53L0X();
 Adafruit_VL6180X lox61 = Adafruit_VL6180X();
-MPU6050 mpu(Wire);
 
 #define TCAADDR 0x70
-unsigned long timer2 = 0;
 
 void tcaselect(uint8_t bus) {
   Wire.beginTransmission(TCAADDR);
   Wire.write(1<< bus);
   Wire.endTransmission();  
-}
-
-void angle_val(){
-  mpu.update();    //Get values from MPU
-
-  if ((millis() - timer2) > 100) { // print data every 100ms
-    timer2 = millis();
-    Serial.print(" Angle X: ");
-    Serial.print(int(mpu.getAngleX()));     //Print Z angle value on LCD 
-    Serial.print(" Angle Y: ");
-    Serial.print(int(mpu.getAngleY()));
-    delay(10);
-    }
 }
 
 void tofSetup()
@@ -30,8 +15,6 @@ void tofSetup()
     Serial.begin(9600);
     Serial.print("Start.");
     Wire.begin();
-    mpu.begin(); 
-    mpu.calcGyroOffsets();
     
     tcaselect(4);
     if (!lox53.begin()) {
@@ -76,12 +59,12 @@ void tofPid()
     //Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
 
     VL53L0X_RangingMeasurementData_t measure;
-    
+
     tcaselect(4);
     lox53.rangingTest(&measure, false);
     tof[2] = measure.RangeMilliMeter;
     //Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
-    
+
     tcaselect(2);
     uint8_t range2 = lox61.readRange();
     tof[4] = range2;
@@ -205,7 +188,7 @@ void printWallState()
 
 bool wallLeft(){
   tofStart();
-  if(tof[0] < 60){
+  if(tof[0] < 80){
     return true;
     }
     else{
@@ -215,7 +198,7 @@ bool wallLeft(){
 
 bool wallRight(){
   tofStart();
-  if(tof[4] < 60){
+  if(tof[4] < 80){
     return true;
     }
     else{
