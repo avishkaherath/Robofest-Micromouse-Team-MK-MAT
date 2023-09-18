@@ -62,7 +62,7 @@ int flood2[14][14] = {
 };
 
 // Define a queue
-int queue[queue_size] = { 0 }; // Adjust the size as needed
+int queue[queue_size] = {0}; // Adjust the size as needed
 
 int orientation(int orient, char turning) {
     if (turning == 'L') {
@@ -127,9 +127,9 @@ int updateCoordinates(int x, int y, int orient) {
     return x, y;
 }
 
-void log(String string) {
-    Serial.println(string);
-}
+//void log(String string) {
+//    Serial.println(string);
+//}
 
 void updateWalls(int x, int y, int orient, bool L, bool R, bool F) {
     if (L && R && F) {
@@ -261,7 +261,7 @@ void changeDestination(int maze[14][14], int destinationx, int destinationy) {
         }
     }
 
-    queue = { 0 }; // Use arrays for queue
+    int queue[queue_size] = {0}; // Use arrays for queue
     maze[destinationy][destinationx] = 0;
 
     front = 0;
@@ -315,7 +315,7 @@ void floodFill2(int maze[14][14]) {
         }
     }
 
-    queue = { 0 }; // Use arrays for queue
+    int queue[queue_size] = {0}; // Use arrays for queue
 
     flood2[6][6] = 1;
     flood2[7][6] = 1;
@@ -567,121 +567,121 @@ void show(int flood[14][14], int variable) {
                 a += String(y3);
             }
 
-            // API.setText(x, y, a);
-            API.setText(x, y, String(flood2[y][x]));
-            // API.setText(x, y, String(variable));
+            // setText(x, y, a);
+            setText(x, y, String(flood2[y][x]));
+            // setText(x, y, String(variable));
         }
     }
 }
 
 int center(int x, int y, int &orient) {
-    bool L = API.wallLeft();
-    bool R = API.wallRight();
-    bool F = API.wallFront();
+    bool L = wallLeft();
+    bool R = wallRight();
+    bool F = wallFront();
 
     if (L) {
         updateWalls(x, y, orient, L, R, F);
 
-        API.moveForward();
+        moveForward();
         int xprev = x;
         int yprev = y;
         x, y = updateCoordinates(x, y, orient);
 
-        L = API.wallLeft();
-        R = API.wallRight();
-        F = API.wallFront();
+        L = wallLeft();
+        R = wallRight();
+        F = wallFront();
         updateWalls(x, y, orient, L, R, F);
 
-        API.turnRight();
+        turnRight();
         orient = orientation(orient, 'R');
 
-        API.moveForward();
+        moveForward();
         xprev = x;
         yprev = y;
         x, y = updateCoordinates(x, y, orient);
 
-        L = API.wallLeft();
-        R = API.wallRight();
-        F = API.wallFront();
+        L = wallLeft();
+        R = wallRight();
+        F = wallFront();
         updateWalls(x, y, orient, L, R, F);
 
-        API.turnRight();
+        turnRight();
         orient = orientation(orient, 'R');
 
-        API.moveForward();
+        moveForward();
         xprev = x;
         yprev = y;
         x, y = updateCoordinates(x, y, orient);
 
-        L = API.wallLeft();
-        R = API.wallRight();
-        F = API.wallFront();
+        L = wallLeft();
+        R = wallRight();
+        F = wallFront();
         updateWalls(x, y, orient, L, R, F);
 
-        API.turnRight();
+        turnRight();
         orient = orientation(orient, 'R');
 
-        API.moveForward();
+        moveForward();
         xprev = x;
         yprev = y;
         x, y = updateCoordinates(x, y, orient);
 
-        L = API.wallLeft();
-        R = API.wallRight();
-        F = API.wallFront();
+        L = wallLeft();
+        R = wallRight();
+        F = wallFront();
         updateWalls(x, y, orient, L, R, F);
 
         return x, y, xprev, yprev, orient;
     } else {
         updateWalls(x, y, orient, L, R, F);
 
-        API.moveForward();
+        moveForward();
         int xprev = x;
         int yprev = y;
         x, y = updateCoordinates(x, y, orient);
 
-        L = API.wallLeft();
-        R = API.wallRight();
-        F = API.wallFront();
+        L = wallLeft();
+        R = wallRight();
+        F = wallFront();
         updateWalls(x, y, orient, L, R, F);
 
-        API.turnLeft();
+        turnLeft();
         orient = orientation(orient, 'L');
 
-        API.moveForward();
+        moveForward();
         xprev = x;
         yprev = y;
         x, y = updateCoordinates(x, y, orient);
 
-        L = API.wallLeft();
-        R = API.wallRight();
-        F = API.wallFront();
+        L = wallLeft();
+        R = wallRight();
+        F = wallFront();
         updateWalls(x, y, orient, L, R, F);
 
-        API.turnLeft();
+        turnLeft();
         orient = orientation(orient, 'L');
 
-        API.moveForward();
+        moveForward();
         xprev = x;
         yprev = y;
         x, y = updateCoordinates(x, y, orient);
 
-        L = API.wallLeft();
-        R = API.wallRight();
-        F = API.wallFront();
+        L = wallLeft();
+        R = wallRight();
+        F = wallFront();
         updateWalls(x, y, orient, L, R, F);
 
-        API.turnLeft();
+        turnLeft();
         orient = orientation(orient, 'L');
 
-        API.moveForward();
+        moveForward();
         xprev = x;
         yprev = y;
         x, y = updateCoordinates(x, y, orient);
 
-        L = API.wallLeft();
-        R = API.wallRight();
-        F = API.wallFront();
+        L = wallLeft();
+        R = wallRight();
+        F = wallFront();
         updateWalls(x, y, orient, L, R, F);
 
         return x, y, xprev, yprev, orient;
@@ -726,29 +726,29 @@ void appendDestination(int x, int y, int flood[14][14]) {
 void shortestPath(int x, int y, int xprev, int yprev, int orient, int state) {
   while (true) {
     show(flood2, state);
-    bool L = API.wallLeft();
-    bool R = API.wallRight();
-    bool F = API.wallFront();
+    bool L = wallLeft();
+    bool R = wallRight();
+    bool F = wallFront();
     // updateWalls(x, y, orient, L, R, F);
 
     if (flood2[y][x] != 1) {
       char direction = toMove2(flood2, x, y, xprev, yprev, orient);
 
       if (direction == 'L') {
-        API.turnLeft();
+        turnLeft();
         orient = orientation(orient, 'L');
       } else if (direction == 'R') {
-        API.turnRight();
+        turnRight();
         orient = orientation(orient, 'R');
       } else if (direction == 'B') {
-        API.turnLeft();
+        turnLeft();
         orient = orientation(orient, 'L');
-        API.turnLeft();
+        turnLeft();
         orient = orientation(orient, 'L');
       }
 
       show(flood2, state);
-      API.moveForward();
+      moveForward();
       xprev = x;
       yprev = y;
       // You'll need to implement the updateCoordinates function for Arduino
@@ -770,10 +770,10 @@ void setup() {
     bool shortPath = false;
 
     while (true) {
-        API.setColor(x, y, 'red');
-        bool L = API.wallLeft();
-        bool R = API.wallRight();
-        bool F = API.wallFront();
+        setColor(x, y, 'red');
+        bool L = wallLeft();
+        bool R = wallRight();
+        bool F = wallFront();
         updateWalls(x, y, orient, L, R, F);
 
         if (flood[y][x] != 0) {
@@ -839,20 +839,20 @@ void setup() {
         }
 
         if (direction == "L") {
-            API.turnLeft();
+            turnLeft();
             orient = orientation(orient, 'L');
         } else if (direction == "R") {
-            API.turnRight();
+            turnRight();
             orient = orientation(orient, 'R');
         } else if (direction == "B") {
-            API.turnLeft();
+            turnLeft();
             orient = orientation(orient, 'L');
-            API.turnLeft();
+            turnLeft();
             orient = orientation(orient, 'L');
         }
 
         show(flood, state);
-        API.moveForward();
+        moveForward();
         xprev = x;
         yprev = y;
         x, y = updateCoordinates(x, y, orient);
