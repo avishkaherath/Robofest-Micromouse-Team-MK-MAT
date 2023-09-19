@@ -1,6 +1,6 @@
 void cellMiddle() {
   tofPid();
-  if ( tof[2] < 100) {
+  if (tof[2] < 100) {
     rightEncoder = 0;
     leftEncoder = 0;
     leftPwm = leftBase;
@@ -28,6 +28,34 @@ void cellMiddle() {
   }
 }
 
+void cellPara() {
+    tofPid();
+    rightEncoder = 0;
+    leftEncoder = 0;
+    leftPwm = leftBase;
+    rightPwm = rightBase;
+    if (tof[0] > 45) {
+      int encoderRightCount = (tof[0] - 40) * 1.4;
+      int encoderLeftCount = (tof[0] - 40) * 1.4;
+      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+      {
+        turnLeft();
+        delay(10);
+      }
+      brake();
+    }
+    else if (tof[5] > 45) {
+      int encoderRightCount = (40 - tof[5]) * 1.4;
+      int encoderLeftCount = (40 - tof[5]) * 1.4;
+      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+      {
+        turnRight();
+        delay(10);
+      }
+      brake();
+    }
+  
+}
 
 void goCell() {
   rightEncoder = 0;
@@ -41,6 +69,7 @@ void goCell() {
   }
   brake();
   cellMiddle();
+  cellPara();
 }
 
 

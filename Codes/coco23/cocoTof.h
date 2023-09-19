@@ -16,7 +16,7 @@ void tofSetup()
     Serial.print("Start.");
     Wire.begin();
     
-    tcaselect(4);
+    tcaselect(6);
     if (!lox61.begin()) {
     Serial.println(F("Failed to boot VL6180X 45 L"));
     while(1);
@@ -27,12 +27,12 @@ void tofSetup()
     Serial.println(F("Failed to boot VL6180X 45 R"));
     while(1);
     }
-    
-    tcaselect(6);
-    if (!lox53.begin()) {
-    Serial.println(F("Failed to boot VL53L0X C"));
-    while(1);
-    }
+//    
+//    tcaselect(4);
+//    if (!lox53.begin()) {
+//    Serial.println(F("Failed to boot VL53L0X C"));
+//    while(1);
+//    }
 
     tcaselect(7);
     if (!lox61.begin()) {
@@ -64,141 +64,59 @@ void tofSetup()
 
 void tofPid()
 {
-
     tcaselect(7);
     uint8_t range1 = lox61.readRange();
     tof[0] = range1;
-    //Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
+    Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
 
     tcaselect(2);
     uint8_t range2 = lox61.readRange();
     tof[4] = range2;
-    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
+    Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("");
 
-    VL53L0X_RangingMeasurementData_t measure;
-    tcaselect(6);
-    lox53.rangingTest(&measure, false);
-    tof[2] = measure.RangeMilliMeter;
-    //Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
+//    VL53L0X_RangingMeasurementData_t measure;
+//    tcaselect(4);
+//    lox53.rangingTest(&measure, false);
+//    tof[2] = measure.RangeMilliMeter;
+//    Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
 
     tcaselect(0);
     uint8_t range3 = lox61.readRange();
     tof[5] = range3;
-    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
+    Serial.print("tof[5] "); Serial.print(tof[5]); Serial.print("   ");
 
     tcaselect(1);
     uint8_t range4 = lox61.readRange();
     tof[6] = range4;
-    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
+    Serial.print("tof[6] "); Serial.print(tof[6]); Serial.println("");
 }
 
 void tofStart()
 {
-    VL53L0X_RangingMeasurementData_t measure;
-    
-    tcaselect(6);
-    lox53.rangingTest(&measure, false);
-    tof[2] = measure.RangeMilliMeter;
-    //Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
 
-    tcaselect(4);
+    tcaselect(6);
     uint8_t range5 = lox61.readRange();
     tof[1] = range5;
-    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
+    Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
 
     tcaselect(3);
     uint8_t range6 = lox61.readRange();
     tof[3] = range6;
-    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.println("");
-}
-// --------------------------------------- uncomment this function------------------------------
-void checkWallsCell()  
-{
-   if (x == 0 && y == 0)
-   {
-       time1 = 0;
-       while(time1 <10)
-       {
-           tofStart();
-           if (tof[2] <= 180)
-           {
-           frontWallAvailable = frontWallAvailable + 1;
-           }
-           else
-           {
-           frontWallAvailable = frontWallAvailable - 1;
-           }
-           if (tof[1] <= 150)
-           {
-           leftWallAvailable= leftWallAvailable + 1;
-           }
-           else
-           {
-           leftWallAvailable= leftWallAvailable - 1;
-           }
-           if (tof[3] <= 150)
-           {
-           rightWallAvailable= rightWallAvailable + 1;
-           }
-           else
-           {
-           rightWallAvailable= rightWallAvailable - 1;
-           }
-           time1 = time1 + 1;
-       }
-   }
-   if (frontWallAvailable >=0 )
-   {
-       cellWalls[1] =  0;
-       F = true;
-       //frontWallAvailable = 0;
-   }
-   else
-   {
-       cellWalls[1] =  1;
-       F = false;
-       //frontWallAvailable = 0;
-   } 
-   if (leftWallAvailable >= 0)
-   {
-       cellWalls[0] = 1;
-       L = true;
-       //leftWallAvailable = 0;
-   }
-   else
-   {
-       cellWalls[0] = 0;
-       L = false;
-       //leftWallAvailable = 0;
-   }
-   if (rightWallAvailable >= 0)
-   {
-       cellWalls[2] = 1;
-       R = true;
-       //rightWallAvailable = 0;
-   }
-   else
-   {
-       cellWalls[2] = 0;
-       R = false;
-       //rightWallAvailable = 0;
-   }
-   
-}
+    Serial.print("tof[3] "); Serial.print(tof[3]); Serial.println("");
+    
+//    VL53L0X_RangingMeasurementData_t measure;
+//    
+//    tcaselect(4);
+//    lox53.rangingTest(&measure, false);
+//    tof[2] = measure.RangeMilliMeter;
+//    Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
 
-void printWallState()
-{
-    for (int i=0; i<3; i++)
-    {
-        Serial.print(cellWalls[i]);
-        Serial.print("   ");
-    }
-    Serial.println("");
+    
 }
 
 bool wallLeft(){
-  tofStart();
-  if(tof[0] < 80){
+  tofPid();
+  if((tof[0]+tof[5])/2 < 80){
     return true;
     }
     else{
@@ -207,8 +125,8 @@ bool wallLeft(){
   }
 
 bool wallRight(){
-  tofStart();
-  if(tof[4] < 80){
+  tofPid();
+  if((tof[4]+tof[6])/2 < 80){
     return true;
     }
     else{
@@ -217,7 +135,7 @@ bool wallRight(){
   }
 
 bool wallFront(){
-  tofStart();
+  tofPid();
   if(tof[2] < 120){
     return true;
     }
@@ -225,5 +143,3 @@ bool wallFront(){
       return false;
       }
   }
-
-  

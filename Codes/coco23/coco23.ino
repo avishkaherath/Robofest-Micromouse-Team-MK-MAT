@@ -772,24 +772,27 @@ void setup() {
 ////        delay(1000);
 //        }
 //
-    while (true) {
-        if (!wallLeft()) {
-            leftAboutTurn();
-        }
-        while (wallFront()) {
-            rightAboutTurn();
-        }
-        goCell();
-        delay(100);
-     }
+//    while (true) {
+//        if (!wallLeft()) {
+//            leftAboutTurn();
+//        }
+//        while (wallFront()) {
+//            rightAboutTurn();
+//        }
+//        goCell();
+//        delay(100);
+//     }
 
 //        
-//      while(true){
-//        //tofPid();
-//        //tofStart();
-//        //delay(1000);
-//        wallFollow();
-//      }
+      while(true){
+        tofPid();
+        delay(100);
+        //tofStart();
+        delay(100);
+        
+        //delay(1000);
+        //wallFollow();
+      }
 }
 
 void loop() {

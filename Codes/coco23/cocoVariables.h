@@ -15,7 +15,6 @@ unsigned long rightEncoder = 0;
 unsigned long encoderLeftCount = 0;
 unsigned long encoderRightCount = 0;
 
-
 int dif = 0;
 int test = 0;
 

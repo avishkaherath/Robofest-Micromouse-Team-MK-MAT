@@ -42,6 +42,7 @@ void turnBack()
   rightEncoder = 0;
 }
 
+//-------------------------------- Turn right by 90 degree about axis-------------------------
 void rightAboutTurn()
 {
   encoderLeftCount = 0;
@@ -87,7 +88,7 @@ void rightAboutTurn()
 }
 
 
-//-------------------------------- Turn right by 90 degree about axis-------------------------
+//-------------------------------- Turn left by 90 degree about axis-------------------------
 void leftAboutTurn()
 {
   encoderLeftCount = 0;
