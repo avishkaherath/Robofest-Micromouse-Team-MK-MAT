@@ -762,12 +762,14 @@ void setup() {
  //    wallFollow(); 
 //}
 //      while(true){
-//        leftAboutTurn();
-//        delay(1000);
-////        leftAboutTurn();
-////        delay(1000);
-////        turnBack();
-////        delay(1000);
+//        tofPid();
+//        tofStart();
+//        forwardBase();
+//        delay(2000);
+//        brake();
+//        reverseBase();
+//        delay(2000);
+//        brake();
 //        }
 //
 //    while (true) {
@@ -783,11 +785,9 @@ void setup() {
 
 //        
       while(true){
-        tofStart();
-        delay(100);
-        tofPid();
-        delay(100);
+        forwardBase();
       }
+        
 }
 
 void loop() {

@@ -51,6 +51,7 @@ void tofSetup()
     while(1);
     }
 
+    delay(50);
     tcaselect(4);
     if (!lox61.begin()) {
     Serial.println(F("Failed to boot VL6180x C"));
