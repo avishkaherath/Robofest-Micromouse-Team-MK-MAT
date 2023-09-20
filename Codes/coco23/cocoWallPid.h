@@ -1,6 +1,6 @@
 void leftPid()
 {
-    Serial.println("leftPid");
+    //Serial.println("leftPid");
     leftError = ((44 - tof[0]) + (44 - tof[5])) / 2;
     leftDiff = leftError - leftLastError;
 
@@ -35,7 +35,7 @@ void leftPid()
 
 void rightPid()
 {
-  Serial.println("rightPid");
+  //Serial.println("rightPid");
     rightError = ((35 - tof[4]) + (35 - tof[6])) / 2;
     rightDiff = rightError - rightLastError;
     if (rightDiff > 50 )
@@ -71,7 +71,7 @@ void rightPid()
 
 void wallPid()
 {
-  Serial.println("wallPid");
+  //Serial.println("wallPid");
     
     rightLastError = ((44 - tof[4]) + (44 - tof[6])) / 2;
     leftLastError = ((35 - tof[7]) + (35 - tof[0])) / 2;
@@ -109,7 +109,7 @@ void wallPid()
 
 void encoderPid()
 {
-    Serial.println("Encoderpid");
+    //Serial.println("Encoderpid");
     encoderError = leftEncoder - rightEncoder;
     
     if (encoderError > 50)
@@ -129,7 +129,7 @@ void encoderPid()
 
 void wallFollow()
 {
-    Serial.println("wall follow");
+    //Serial.println("wall follow");
     tofPid();
     if ((tof[0]+tof[5])/2 <= 60 && (tof[4]+tof[6])/2 <= 60) //walls exist in both sides
     {

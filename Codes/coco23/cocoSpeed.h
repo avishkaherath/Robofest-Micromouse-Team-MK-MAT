@@ -1,5 +1,5 @@
 void cellMiddle() {
-  tofPid();
+  tofStart();
   if (tof[2] < 100) {
     rightEncoder = 0;
     leftEncoder = 0;
@@ -31,12 +31,10 @@ void cellMiddle() {
 
 void cellPara() {
   tofPid();
-  rightEncoder =0;
-  leftEncoder=0;
-  if ((tof[0]+tof[5])/2 <= 60) {  //left wall exist
-    if (tof[0] > tof[5]) {
-      int encoderRightCount = (tof[0] - tof[5]) * 0.2;
-      int encoderLeftCount = (tof[0] - tof[5]) * 0.2;
+  if (state = 0) {
+    if (tof[0] > tof[4]) {
+      int encoderRightCount = (tof[0] - tof[4]) * 1.4;
+      int encoderLeftCount = (tof[0] - tof[4]) * 1.4;
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         turnLeft();
@@ -44,9 +42,9 @@ void cellPara() {
       }
       brake();
     }
-    else if (tof[0] < tof[5]) {
-      int encoderRightCount = (tof[5] - tof[0]) * 0.2;
-      int encoderLeftCount = (tof[5] - tof[0]) * 0.2;
+    else if (tof[0] < tof[4]) {
+      int encoderRightCount = (tof[0] - tof[4]) * 1.4;
+      int encoderLeftCount = (tof[0] - tof[4]) * 1.4;
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         turnRight();
@@ -55,10 +53,32 @@ void cellPara() {
       brake();
     }
   } 
-  else if ((tof[4]+tof[6])/2 <= 60) {  //right wall exists
+  else if (state = 1) {
+    if (tof[0] > tof[5]) {
+      int encoderRightCount = (tof[0] - tof[5]) * 1.4;
+      int encoderLeftCount = (tof[0] - tof[5]) * 1.4;
+      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+      {
+        turnLeft();
+        delay(10);
+      }
+      brake();
+    }
+    else if (tof[0] < tof[5]) {
+      int encoderRightCount = (tof[0] - tof[5]) * 1.4;
+      int encoderLeftCount = (tof[0] - tof[5]) * 1.4;
+      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+      {
+        turnRight();
+        delay(10);
+      }
+      brake();
+    }
+  } 
+  else if (state = 2) {
     if (tof[4] > tof[6]) {
-      int encoderRightCount = (tof[4] - tof[6]) * 0.2;
-      int encoderLeftCount = (tof[4] - tof[6]) * 0.2;
+      int encoderRightCount = (tof[4] - tof[6]) * 1.4;
+      int encoderLeftCount = (tof[4] - tof[6]) * 1.4;
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         turnRight();
@@ -67,8 +87,8 @@ void cellPara() {
       brake();
     }
     else if (tof[4] < tof[6]) {
-      int encoderRightCount = (tof[6] - tof[4]) * 0.2;
-      int encoderLeftCount = (tof[6] - tof[4]) * 0.2;
+      int encoderRightCount = (tof[4] - tof[6]) * 1.4;
+      int encoderLeftCount = (tof[4] - tof[6]) * 1.4;
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         turnLeft();
