@@ -12,8 +12,6 @@ void tcaselect(uint8_t bus) {
 void tofSetup()
 {
     delay(70);
-    Serial.begin(9600);
-    Serial.print("Start.");
     Wire.begin();
     
     tcaselect(6);
@@ -65,14 +63,13 @@ void tofSetup()
 void tofPid()
 {
     tcaselect(7);
-    uint8_t range1 = lox61.readRange();
-    tof[0] = range1;
-    Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
-
+    tof[0] = lox61.readRange();
     tcaselect(2);
-    uint8_t range2 = lox61.readRange();
-    tof[4] = range2;
-    Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("");
+    tof[4] = lox61.readRange();
+    tcaselect(0);
+    tof[5] = lox61.readRange();
+    tcaselect(1);
+    tof[6] = lox61.readRange();
 
 //    VL53L0X_RangingMeasurementData_t measure;
 //    tcaselect(4);
@@ -80,29 +77,18 @@ void tofPid()
 //    tof[2] = measure.RangeMilliMeter;
 //    Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
 
-    tcaselect(0);
-    uint8_t range3 = lox61.readRange();
-    tof[5] = range3;
-    Serial.print("tof[5] "); Serial.print(tof[5]); Serial.print("   ");
 
-    tcaselect(1);
-    uint8_t range4 = lox61.readRange();
-    tof[6] = range4;
-    Serial.print("tof[6] "); Serial.print(tof[6]); Serial.println("");
 }
 
 void tofStart()
 {
 
     tcaselect(6);
-    uint8_t range5 = lox61.readRange();
-    tof[1] = range5;
-    Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
+    tof[5] = lox61.readRange();
 
     tcaselect(3);
-    uint8_t range6 = lox61.readRange();
-    tof[3] = range6;
-    Serial.print("tof[3] "); Serial.print(tof[3]); Serial.println("");
+    tof[3] = lox61.readRange();
+
     
 //    VL53L0X_RangingMeasurementData_t measure;
 //    

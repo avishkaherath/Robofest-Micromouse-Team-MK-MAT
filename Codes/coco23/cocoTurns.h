@@ -49,7 +49,7 @@ void rightAboutTurn()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
-  encoderRightCount = encoderRightCount + 42;
+  encoderRightCount = encoderRightCount + 44;
   encoderLeftCount = encoderLeftCount + 44;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
@@ -68,8 +68,8 @@ void rightAboutTurn()
     turnRight();
     delay(10);
   }
-  encoderRightCount = encoderRightCount + 46;
-  encoderLeftCount = encoderLeftCount + 46;
+  encoderRightCount = encoderRightCount + 45;
+  encoderLeftCount = encoderLeftCount + 45;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
@@ -133,6 +133,7 @@ void leftAboutTurn()
   rightEncoder = 0;
 }
 
+//--------------------------------------------------------------------------------------------------------------
 void rightHalfTurn()
 {
   encoderLeftCount = 0;
@@ -174,4 +175,13 @@ void rightHalfTurn()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
+}
+
+//---------------------------------------------------------------------------------------
+
+void turnRightPID(){
+  int stepsToTurn = 90;
+  leftEncoder = 0;
+  rightEncoder = 0;
+  
 }

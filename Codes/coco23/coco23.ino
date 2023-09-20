@@ -785,13 +785,13 @@ void setup() {
 
 //        
       while(true){
-        tofPid();
-        delay(100);
-        //tofStart();
-        delay(100);
-        
-        //delay(1000);
-        //wallFollow();
+        cellPara();
+        delay(1000);        
+        //forwardBase();
+//        Serial.print( leftEncoder);
+//        Serial.print(" , ");
+//        Serial.println(rightEncoder);
+
       }
 }
 
