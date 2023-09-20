@@ -1,27 +1,11 @@
-Adafruit_VL53L0X lox53 = Adafruit_VL53L0X();
 Adafruit_VL6180X lox61 = Adafruit_VL6180X();
 
 #define TCAADDR 0x70
-MPU6050 mpu(Wire);
-unsigned long timer3 = 0;
 
 void tcaselect(uint8_t bus) {
   Wire.beginTransmission(TCAADDR);
   Wire.write(1<< bus);
   Wire.endTransmission();  
-}
-
-void angle_val(){
-  mpu.update();    //Get values from MPU
-
-  if ((millis() - timer3) > 100) { // print data every 100ms
-    timer3 = millis();
-    Serial.print(" Angle X: ");
-    Serial.print(int(mpu.getAngleX()));     //Print Z angle value on LCD 
-    Serial.print(" Angle Y: ");
-    Serial.println(int(mpu.getAngleY()));
-    delay(10);
-    }
 }
 
 void tofSetup()
@@ -40,12 +24,6 @@ void tofSetup()
     tcaselect(3);
     if (!lox61.begin()) {
     Serial.println(F("Failed to boot VL6180X 45 R"));
-    while(1);
-    }
-    
-    tcaselect(4);
-    if (!lox53.begin()) {
-    Serial.println(F("Failed to boot VL53L0X C"));
     while(1);
     }
 
@@ -73,6 +51,12 @@ void tofSetup()
     while(1);
     }
 
+    tcaselect(4);
+    if (!lox61.begin()) {
+    Serial.println(F("Failed to boot VL6180x C"));
+    while(1);
+    }
+
     Serial.println(" End setup");
     delay(1000);
 }
@@ -80,46 +64,39 @@ void tofSetup()
 void tofPid()
 {
     tcaselect(7);
-    uint8_t range1 = lox61.readRange();
-    tof[0] = range1;
+    tof[0] = lox61.readRange() - 14;
     Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
 
     tcaselect(2);
-    uint8_t range2 = lox61.readRange();
-    tof[4] = range2;
-    Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("");
+    tof[4] = lox61.readRange();
+    Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("   ");
 
     tcaselect(0);
-    uint8_t range3 = lox61.readRange();
-    tof[5] = range3;
+    tof[5] = lox61.readRange();
     Serial.print("tof[5] "); Serial.print(tof[5]); Serial.print("   ");
 
     tcaselect(1);
-    uint8_t range4 = lox61.readRange();
-    tof[6] = range4;
-    Serial.print("tof[6] "); Serial.print(tof[6]); Serial.println("");
+    tof[6] = lox61.readRange()-5;
+    Serial.print("tof[6] "); Serial.print(tof[6]); Serial.print("   ");
 }
 
 void tofStart()
 {
 
-//    tcaselect(6);
-//    uint8_t range5 = lox61.readRange();
-//    tof[1] = range5;
-//    Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
-//
-//    tcaselect(3);
-//    uint8_t range6 = lox61.readRange();
-//    tof[3] = range6;
-//    Serial.print("tof[3] "); Serial.print(tof[3]); Serial.println("");
-    
-    VL53L0X_RangingMeasurementData_t measure;
-    tcaselect(4);
-    lox53.rangingTest(&measure, false);
-    tof[2] = measure.RangeMilliMeter;
-    Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
+    tcaselect(6);
+    //uint8_t range5 = lox61.readRange();
+    tof[1] = lox61.readRange();
+    Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
 
+    tcaselect(3);
+    //uint8_t range6 = lox61.readRange();
+    tof[3] = lox61.readRange();
+    Serial.print("tof[3] "); Serial.print(tof[3]); Serial.print("   ");
     
+    tcaselect(4);
+   // uint8_t range7 = lox61.readRange();
+    tof[2] = lox61.readRange();
+    Serial.print("tof[2] "); Serial.print(tof[2]); Serial.println("");
 }
 
 bool wallLeft(){

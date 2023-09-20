@@ -1,7 +1,5 @@
 #include "Wire.h"
 #include "Adafruit_VL6180X.h"
-#include "Adafruit_VL53L0X.h"
-#include "MPU6050_light.h"
 #include "QueueArray.h"
 #include "cocoVariables.h"
 #include "cocoPins.h"
@@ -746,8 +744,6 @@ void shortestPath(int x, int y, int xprev, int yprev, int orient, int state) {
 void setup() {
     tofSetup();
     Wire.begin();
-    mpu.begin(); 
-    mpu.calcGyroOffsets();
     motorDiver();
     motorInterrupt();
     attachInterrupt(digitalPinToInterrupt(ENCL1), countLeftOut1, RISING);
@@ -774,33 +770,23 @@ void setup() {
 ////        delay(1000);
 //        }
 //
-    while (true) {
-        if (!wallLeft()) {
-            leftAboutTurn();
-        }
-        while (wallFront()) {
-            rightAboutTurn();
-        }
-        goCell();
-        delay(100);
-     }
+//    while (true) {
+//        if (!wallLeft()) {
+//            leftAboutTurn();
+//        }
+//        while (wallFront()) {
+//            rightAboutTurn();
+//        }
+//        goCell();
+//        delay(100);
+//     }
 
 //        
       while(true){
-//        tofPid();
-//        delay(100);
-//        tofStart();
-//        delay(100);
-//          forwardBase();
-//          angle_val();
-//          delay(2000);
-//          brake();
-//          reverseBase();
-//          angle_val();
-//          delay(200);
-//          brake();
-//        delay(1000);
-//        wallFollow();
+        tofStart();
+        delay(100);
+        tofPid();
+        delay(100);
       }
 }
 
