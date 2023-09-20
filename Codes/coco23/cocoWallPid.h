@@ -1,7 +1,7 @@
 void leftPid()
 {
     Serial.println("leftPid");
-    leftError = ((35 - tof[0]) + (35 - tof[5])) / 2;
+    leftError = ((30 - tof[0]) + (30 - tof[5])) / 2;
     leftDiff = leftError - leftLastError;
 
     if (leftDiff > 50)
@@ -36,7 +36,7 @@ void leftPid()
 void rightPid()
 {
     Serial.println("rightPid");
-    rightError = ((35 - tof[4]) + (35 - tof[6])) / 2;
+    rightError = ((30 - tof[4]) + (30 - tof[6])) / 2;
     rightDiff = rightError - rightLastError;
     if (rightDiff > 50 )
     {
@@ -73,8 +73,8 @@ void wallPid()
 {
     Serial.println("wallPid");
     
-    rightLastError = ((35 - tof[4]) + (35 - tof[6])) / 2;
-    leftLastError = ((35 - tof[5]) + (35 - tof[0])) / 2;
+    rightLastError = ((30 - tof[4]) + (30 - tof[6])) / 2;
+    leftLastError = ((30 - tof[5]) + (30 - tof[0])) / 2;
     wallError = rightLastError - leftLastError;
     wallDiff = wallError - wallLastError;
     

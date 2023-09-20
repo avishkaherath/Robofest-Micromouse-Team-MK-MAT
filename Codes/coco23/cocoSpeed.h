@@ -106,12 +106,13 @@ void goCell() {
   encoderLeftCount = 225;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
-    wallFollow();
+    //wallFollow();
+    forwardBase();
     delay(10);
   }
   brake();
-  cellMiddle();
-  cellPara();
+//  cellMiddle();
+//  cellPara();
 }
 
 

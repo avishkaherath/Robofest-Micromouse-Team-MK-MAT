@@ -66,19 +66,19 @@ void tofPid()
 {
     tcaselect(7);
     tof[0] = lox61.readRange() - 14;
-    Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
+    //Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
 
     tcaselect(2);
-    tof[4] = lox61.readRange();
-    Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("   ");
+    tof[4] = lox61.readRange() - 4;
+    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("   ");
 
     tcaselect(0);
-    tof[5] = lox61.readRange();
-    Serial.print("tof[5] "); Serial.print(tof[5]); Serial.print("   ");
+    tof[5] = lox61.readRange() + 1;
+    //Serial.print("tof[5] "); Serial.print(tof[5]); Serial.print("   ");
 
     tcaselect(1);
-    tof[6] = lox61.readRange()-5;
-    Serial.print("tof[6] "); Serial.print(tof[6]); Serial.print("   ");
+    tof[6] = lox61.readRange() - 6;
+    //Serial.print("tof[6] "); Serial.print(tof[6]); Serial.print("   ");
 }
 
 void tofStart()
@@ -87,17 +87,17 @@ void tofStart()
     tcaselect(6);
     //uint8_t range5 = lox61.readRange();
     tof[1] = lox61.readRange();
-    Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
+    //Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
 
     tcaselect(3);
     //uint8_t range6 = lox61.readRange();
     tof[3] = lox61.readRange();
-    Serial.print("tof[3] "); Serial.print(tof[3]); Serial.print("   ");
+    //Serial.print("tof[3] "); Serial.print(tof[3]); Serial.print("   ");
     
     tcaselect(4);
    // uint8_t range7 = lox61.readRange();
     tof[2] = lox61.readRange();
-    Serial.print("tof[2] "); Serial.print(tof[2]); Serial.println("");
+    //Serial.print("tof[2] "); Serial.print(tof[2]); Serial.println("");
 }
 
 bool wallLeft(){
