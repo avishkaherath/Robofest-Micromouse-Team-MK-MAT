@@ -43,11 +43,11 @@ void tofSetup()
     while(1);
     }
     
-//    tcaselect(4);
-//    if (!lox53.begin()) {
-//    Serial.println(F("Failed to boot VL53L0X C"));
-//    while(1);
-//    }
+    tcaselect(4);
+    if (!lox53.begin()) {
+    Serial.println(F("Failed to boot VL53L0X C"));
+    while(1);
+    }
 
     tcaselect(7);
     if (!lox61.begin()) {
@@ -103,21 +103,21 @@ void tofPid()
 void tofStart()
 {
 
-    tcaselect(6);
-    uint8_t range5 = lox61.readRange();
-    tof[1] = range5;
-    Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
-
-    tcaselect(3);
-    uint8_t range6 = lox61.readRange();
-    tof[3] = range6;
-    Serial.print("tof[3] "); Serial.print(tof[3]); Serial.println("");
+//    tcaselect(6);
+//    uint8_t range5 = lox61.readRange();
+//    tof[1] = range5;
+//    Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
+//
+//    tcaselect(3);
+//    uint8_t range6 = lox61.readRange();
+//    tof[3] = range6;
+//    Serial.print("tof[3] "); Serial.print(tof[3]); Serial.println("");
     
-//    VL53L0X_RangingMeasurementData_t measure;
-//    tcaselect(4);
-//    lox53.rangingTest(&measure, false);
-//    tof[2] = measure.RangeMilliMeter;
-//    Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
+    VL53L0X_RangingMeasurementData_t measure;
+    tcaselect(4);
+    lox53.rangingTest(&measure, false);
+    tof[2] = measure.RangeMilliMeter;
+    Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
 
     
 }

@@ -1,5 +1,5 @@
 void cellMiddle() {
-  tofPid();
+  tofStart();
   if (tof[2] < 100) {
     rightEncoder = 0;
     leftEncoder = 0;
@@ -30,6 +30,7 @@ void cellMiddle() {
 
 
 void cellPara() {
+  tofPid();
   if (state = 0) {
     if (tof[0] > tof[4]) {
       int encoderRightCount = (tof[0] - tof[4]) * 1.4;
