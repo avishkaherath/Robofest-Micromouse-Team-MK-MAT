@@ -1,5 +1,5 @@
-#define PINL1 26  // IN1 LEFT MOTOR
-#define PINL2 12   // IN2
+#define PINL1 12  // IN1 LEFT MOTOR
+#define PINL2 26   // IN2
 #define PINR1 27   // IN3 RIGHT MOTOR
 #define PINR2 14  // IN4
 
