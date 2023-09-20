@@ -2,11 +2,26 @@ Adafruit_VL53L0X lox53 = Adafruit_VL53L0X();
 Adafruit_VL6180X lox61 = Adafruit_VL6180X();
 
 #define TCAADDR 0x70
+MPU6050 mpu(Wire);
+unsigned long timer3 = 0;
 
 void tcaselect(uint8_t bus) {
   Wire.beginTransmission(TCAADDR);
   Wire.write(1<< bus);
   Wire.endTransmission();  
+}
+
+void angle_val(){
+  mpu.update();    //Get values from MPU
+
+  if ((millis() - timer3) > 100) { // print data every 100ms
+    timer3 = millis();
+    Serial.print(" Angle X: ");
+    Serial.print(int(mpu.getAngleX()));     //Print Z angle value on LCD 
+    Serial.print(" Angle Y: ");
+    Serial.println(int(mpu.getAngleY()));
+    delay(10);
+    }
 }
 
 void tofSetup()
@@ -27,7 +42,7 @@ void tofSetup()
     Serial.println(F("Failed to boot VL6180X 45 R"));
     while(1);
     }
-//    
+    
 //    tcaselect(4);
 //    if (!lox53.begin()) {
 //    Serial.println(F("Failed to boot VL53L0X C"));
@@ -74,12 +89,6 @@ void tofPid()
     tof[4] = range2;
     Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("");
 
-//    VL53L0X_RangingMeasurementData_t measure;
-//    tcaselect(4);
-//    lox53.rangingTest(&measure, false);
-//    tof[2] = measure.RangeMilliMeter;
-//    Serial.print("tof[2] "); Serial.print(tof[2]); Serial.print("   ");
-
     tcaselect(0);
     uint8_t range3 = lox61.readRange();
     tof[5] = range3;
@@ -105,7 +114,6 @@ void tofStart()
     Serial.print("tof[3] "); Serial.print(tof[3]); Serial.println("");
     
 //    VL53L0X_RangingMeasurementData_t measure;
-//    
 //    tcaselect(4);
 //    lox53.rangingTest(&measure, false);
 //    tof[2] = measure.RangeMilliMeter;
