@@ -87,15 +87,15 @@ void tofPid()
 void tofStart()
 {
 
-    tcaselect(6);
+    tcaselect(2);
 //    delay(10);  
-    tof[1] = lox61.readRange();
-    //Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
+    tof[4] = lox61.readRange();
+    //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("   ");
 
-    tcaselect(3);
+    tcaselect(7);
 //    delay(10);  
-    tof[3] = lox61.readRange();
-    //Serial.print("tof[3] "); Serial.print(tof[3]); Serial.print("   ");
+    tof[0] = lox61.readRange();
+    //Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
     
     tcaselect(4);
 //    delay(10);  
