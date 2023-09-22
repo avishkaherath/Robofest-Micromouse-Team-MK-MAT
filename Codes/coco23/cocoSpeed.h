@@ -3,11 +3,21 @@ void cellMiddle() {
   if (tof[2] < 100) {
     rightEncoder = 0;
     leftEncoder = 0;
-    leftPwm = leftBase;
-    rightPwm = rightBase;
-    if (tof[2] > 45) {
-      int encoderRightCount = (tof[2] - 40) * 1.4;
-      int encoderLeftCount = (tof[2] - 40) * 1.4;
+
+    if (tof[2] > 35) {
+      leftPwm = leftBase+10;
+      rightPwm = rightBase+10;
+      encoderRightCount = (tof[2] - 30) * 0.4;
+       encoderLeftCount = (tof[2] - 30) * 0.4;
+      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+      {
+        forward();
+        delay(10);
+      }
+      leftPwm = leftBase;
+      rightPwm = rightBase;
+       encoderRightCount += (tof[2] - 30) ;
+       encoderLeftCount += (tof[2] - 30) ;
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         forward();
@@ -15,9 +25,20 @@ void cellMiddle() {
       }
       brake();
     }
-    else if (tof[2] < 40) {
-      int encoderRightCount = (40 - tof[2]) * 1.4;
-      int encoderLeftCount = (40 - tof[2]) * 1.4;
+    else if (tof[2] < 30) {
+      leftPwm = leftBase+20;
+      rightPwm = rightBase+20;
+      encoderRightCount = (30 - tof[2]) * 0.4;
+      encoderLeftCount = (30 - tof[2]) * 0.4;
+      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+      {
+        reverse();
+        delay(10);
+      }
+      leftPwm = leftBase;
+      rightPwm = rightBase;
+      encoderRightCount += (30 - tof[2]);
+      encoderLeftCount += (30 - tof[2]);
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         reverse();
@@ -167,12 +188,12 @@ void goCell() {
   encoderLeftCount = 50;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
-    rightForward(rightBase + 10);
-    leftForward(leftBase + 5);
-    delay(10);
+    rightForward(rightBase + 30);
+    leftForward(leftBase + 30);
+    delay(20);
   }
-  encoderRightCount += 200;
-  encoderLeftCount += 200;
+  encoderRightCount += 240;
+  encoderLeftCount += 240;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     wallFollow();

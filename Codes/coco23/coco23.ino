@@ -757,19 +757,29 @@ void setup() {
       while(true) {
         if(!wallLeft()) {
             leftAboutTurn();
+ //           cellPara();
+//         turnBack();
+//         delay(500);
         }
-        while(wallFront()) {
-            rightAboutTurn();
+        
+//        while(wallFront()) {
+//            rightAboutTurn();
+//            //cellPara();
+//        }
+
+        else if(wallLeft() && wallRight() && wallFront()){
+            turnBack();
+          }
+        else if (wallLeft()&& wallFront()){
+          rightAboutTurn();
         }
+             
         goCell();
         }
         
 //          while(true){
-//            tofPid();
-//          
-//            //turnBack();
-//            cellPara();
-//            delay(1000);
+//            wallFollow();
+//            delay(10);
 //            }
           
 }

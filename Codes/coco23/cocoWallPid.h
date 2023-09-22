@@ -136,7 +136,7 @@ void wallFollow()
         state = 0;
         if (state != preState)
         {
-          jump = 1;
+         jump = 2;
           wallLastError = 0;
         }
         if (jump>0)
@@ -157,7 +157,7 @@ void wallFollow()
         state = 1;
         if (state != preState)
         {
-          jump = 1;
+          jump = 0;
           rightLastError = 0;
         }
         if (jump>0)
@@ -178,7 +178,7 @@ void wallFollow()
         state = 2;
         if (state != preState)
         {
-          jump = 1;
+          jump = 0;
           leftLastError = 0;
         }
         if (jump>0)

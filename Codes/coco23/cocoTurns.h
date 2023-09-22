@@ -17,7 +17,7 @@ void turnBack()
   rightPwm = rightTurnBase;
   leftPwm = leftTurnBase;
   encoderRightCount = encoderRightCount + 95;
-  encoderLeftCount = encoderLeftCount + 100;
+  encoderLeftCount = encoderLeftCount + 150;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     turnRight();
@@ -95,8 +95,8 @@ void leftAboutTurn()
   encoderRightCount = 0;
   leftEncoder1 = 0;
   rightEncoder = 0;
-  encoderRightCount = encoderRightCount + 59;
-  encoderLeftCount = encoderLeftCount + 59;
+  encoderRightCount = encoderRightCount + 55;
+  encoderLeftCount = encoderLeftCount + 55;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
