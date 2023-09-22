@@ -754,19 +754,23 @@ void setup() {
   int orient = 0;
 
  
-//      while(true) {
-//        if(!wallLeft()) {
-//            leftAboutTurn();
-//        }
-//        while(wallFront()) {
-//            rightAboutTurn();
-//        }
-//        goCell();
-//        }
-          while(true){
+      while(true) {
+        if(!wallLeft()) {
+            leftAboutTurn();
+        }
+        while(wallFront()) {
             rightAboutTurn();
-            delay(1000);
-            }
+        }
+        goCell();
+        }
+        
+//          while(true){
+//            tofPid();
+//          
+//            //turnBack();
+//            cellPara();
+//            delay(1000);
+//            }
           
 }
 

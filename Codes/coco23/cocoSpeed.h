@@ -81,67 +81,80 @@ void cellPara() {
 
 
   if ((tof[0] + tof[5]) / 2 <= 70) {
-    
-    while (tof[0] > tof[5]) {
+    for (int i = 0; i < 2; i++) {
+      while (tof[0] > tof[5]) {
 
-      //      Serial.print(tof[0]);
-      //      Serial.print(" , ");
-      //      Serial.println(tof[5]);
-      turnLeft();
-      tcaselect(7);
-      //delay(10);
-      tof[0] = lox61.readRange() - 14;
-      tcaselect(0);
-      //delay(10);
-      tof[5] = lox61.readRange() + 1;
-    }
-    brake();
+        //      Serial.print(tof[0]);
+        //      Serial.print(" , ");
+        //      Serial.println(tof[5]);
+        leftPwm = 70 + tof[0] - tof[5];
+        rightPwm = 75 + tof[0] - tof[5];
+        turnLeft();
+        tcaselect(7);
+        //delay(10);
+        tof[0] = lox61.readRange() - 14;
+        tcaselect(0);
+        //delay(10);
+        tof[5] = lox61.readRange() + 1;
+      }
+      brake();
 
-    while (tof[0] < tof[5]) {
-      Serial.print(tof[0]);
-      Serial.print(" , ");
-      Serial.println(tof[5]);
-      turnRight();
-      tcaselect(7);
-      //delay(10);
-      tof[0] = lox61.readRange() - 14;
-      tcaselect(0);
-      // delay(10);
-      tof[5] = lox61.readRange() + 1;
+      while (tof[0] < tof[5]) {
+        //      Serial.print(tof[0]);
+        //      Serial.print(" , ");
+        //      Serial.println(tof[5]);
+        leftPwm = 70 + tof[5] - tof[0];
+        rightPwm = 75 + tof[5] - tof[0];
+        turnRight();
+        tcaselect(7);
+        //delay(10);
+        tof[0] = lox61.readRange() - 14;
+        tcaselect(0);
+        // delay(10);
+        tof[5] = lox61.readRange() + 1;
+      }
+      brake();
     }
-    brake();
   }
 
   else if ((tof[4] + tof[6]) / 2 <= 70) {
-    while (tof[4] > tof[6]) {
-      //
-      //      Serial.print(tof[0]);
-      //      Serial.print(" , ");
-      //      Serial.println(tof[5]);
-      turnRight();
-      tcaselect(2);
-//    delay(10);  
-    tof[4] = lox61.readRange() - 4;
-      tcaselect(1);
-//    delay(10);  
-    tof[6] = lox61.readRange() - 6;
-    }
-    brake();
+    for (int i = 0; i < 2; i++) {
+      while (tof[4] > tof[6]) {
+        //
+        //      Serial.print(tof[0]);
+        //      Serial.print(" , ");
+        //      Serial.println(tof[5]);
+        leftPwm = 70 + tof[4] - tof[6];
+        rightPwm = 75 + tof[4] - tof[6];
+        turnRight();
+        tcaselect(2);
+        //    delay(10);
+        tof[4] = lox61.readRange() - 4;
+        tcaselect(1);
+        //    delay(10);
+        tof[6] = lox61.readRange() - 6;
+      }
+      brake();
 
-    while (tof[4] < tof[6]) {
-      //      Serial.print(tof[0]);
-      //      Serial.print(" , ");
-      //      Serial.println(tof[5]);
-      turnLeft();
-     tcaselect(2);
-//    delay(10);  
-    tof[4] = lox61.readRange() - 4;
-      tcaselect(1);
-//    delay(10);  
-    tof[6] = lox61.readRange() - 6;
+      while (tof[4] < tof[6]) {
+        //      Serial.print(tof[0]);
+        //      Serial.print(" , ");
+        //      Serial.println(tof[5]);
+        leftPwm = 70 + tof[6] - tof[4];
+        rightPwm = 75 + tof[6] - tof[4];
+        turnLeft();
+        tcaselect(2);
+        //    delay(10);
+        tof[4] = lox61.readRange() - 4;
+        tcaselect(1);
+        //    delay(10);
+        tof[6] = lox61.readRange() - 6;
+      }
+      brake();
     }
-    brake();
   }
+  leftPwm = leftBase;
+  rightPwm = rightBase;
 }
 
 
@@ -158,16 +171,16 @@ void goCell() {
     leftForward(leftBase + 5);
     delay(10);
   }
-  encoderRightCount += 235;
-  encoderLeftCount += 235;
+  encoderRightCount += 200;
+  encoderLeftCount += 200;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     wallFollow();
     delay(10);
   }
   brake();
-//  cellPara();
-//  delay(50);
+  cellPara();
+  delay(50);
   cellMiddle();
   delay(50);
 }
