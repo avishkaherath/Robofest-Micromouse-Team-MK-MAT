@@ -2,14 +2,15 @@ int x = 0;
 int y = 0;
 int orient = 0;
 
-int leftBase = 82;        //earlier 81
-int rightBase = 88;       //earlier 82
+int leftBase = 81;        //earlier 81
+int rightBase = 85;       //earlier 85
 int leftPwm = leftBase;
 int rightPwm = rightBase;
 int leftTurnBase = 100;
 int rightTurnBase = 100;
 //byte state=0;  // remove this in final code
 
+unsigned long leftEncoder1 = 0;
 unsigned long leftEncoder = 0;
 unsigned long rightEncoder = 0;
 unsigned long encoderLeftCount = 0;
@@ -29,29 +30,29 @@ int frontWallAvailable = 0;
 int rightWall  = 1;
 int leftWall = 1;
 
-float leftP = 0.25; //0.15
-float leftD = 3;  //4
+float leftP = 0.2; //0.2
+float leftD = 4;  //4
 
 float leftError = 0;
 float leftLastError = 0;
 float leftDiff = 0;
 
 float rightP = 0.2; //0.2
-float rightD = 3;  //2
+float rightD = 4;  //4
 
 float rightError = 0;
 float rightLastError = 0;
 float rightDiff = 0;
 
-float wallP = 0.22;  //0.22
-float wallD = 2; //2
+float wallP = 0.2;  //0.2
+float wallD = 3.2; //3.2
 
 float wallError = 0;
 float wallLastError = 0;
 float wallDiff = 0;
 
 float encoderP = 0.2;
-float encoderD = 0; 
+float encoderD = 0;
 
 float encoderError = 0;
 float encoderLastError = 0;
