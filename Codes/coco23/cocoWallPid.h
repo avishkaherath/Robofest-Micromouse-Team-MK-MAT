@@ -1,9 +1,9 @@
 void leftPid()
 {
-    Serial.println("leftPid");
-    leftError = ((30 - tof[0]) + (30 - tof[5])) / 2;
+    //Serial.println("leftPid");
+    leftError = 30 - tof[0];
     leftDiff = leftError - leftLastError;
-
+    
     if (leftDiff > 50)
     {
         leftError = 10;
@@ -35,8 +35,8 @@ void leftPid()
 
 void rightPid()
 {
-    Serial.println("rightPid");
-    rightError = ((30 - tof[4]) + (30 - tof[6])) / 2;
+    //Serial.println("rightPid");
+    rightError = 30 - tof[4];
     rightDiff = rightError - rightLastError;
     if (rightDiff > 50 )
     {
@@ -71,11 +71,11 @@ void rightPid()
 
 void wallPid()
 {
-    Serial.println("wallPid");
+  //Serial.println("wallPid");
+  rightLastError = 30 - tof[4];
+    leftLastError = 30 - tof[0];
     
-    rightLastError = ((30 - tof[4]) + (30 - tof[6])) / 2;
-    leftLastError = ((30 - tof[5]) + (30 - tof[0])) / 2;
-    wallError = rightLastError - leftLastError;
+    wallError = tof[0] - tof[4];
     wallDiff = wallError - wallLastError;
     
     if (wallDiff > 50)
@@ -109,7 +109,7 @@ void wallPid()
 
 void encoderPid()
 {
-    Serial.println("Encoderpid");
+    //Serial.println("Encoderpid");
     encoderError = leftEncoder - rightEncoder;
     
     if (encoderError > 50)
@@ -129,9 +129,9 @@ void encoderPid()
 
 void wallFollow()
 {
-    Serial.println("wall follow");
+    //Serial.println("wall follow");
     tofPid();
-    if ((tof[0]+tof[5])/2 <= 75 && (tof[4]+tof[6])/2 <= 75) //walls exist in both sides
+    if ((tof[0]+tof[5])/2 <= 70 && (tof[4]+tof[6])/2 <= 70) //walls exist in both sides
     {
         state = 0;
         if (state != preState)
@@ -141,8 +141,8 @@ void wallFollow()
         }
         if (jump>0)
         {
-          //forwardBase();
-          encoderPid();
+          forwardBase();
+          //encoderPid();
           jump = jump-1;
         }
         else
@@ -152,7 +152,7 @@ void wallFollow()
         }
     }
 
-    else if ((tof[0]+tof[5])/2 > 75 && (tof[4]+tof[6])/2 <= 75)   //right wall exist
+    else if ((tof[0]+tof[5])/2 > 70 && (tof[4]+tof[6])/2 <= 70)   //right wall exist
     {
         state = 1;
         if (state != preState)
@@ -162,8 +162,8 @@ void wallFollow()
         }
         if (jump>0)
         {
-          encoderPid();
-          //forwardBase();
+          //encoderPid();
+          forwardBase();
           jump = jump-1;
         }
         else
@@ -173,7 +173,7 @@ void wallFollow()
         }
     }
 
-    else if ((tof[0]+tof[5])/2 <= 75 && (tof[4]+tof[6])/2 > 75)   //left wall exists
+    else if ((tof[0]+tof[5])/2 <= 70 && (tof[4]+tof[6])/2 > 70)   //left wall exists
     {
         state = 2;
         if (state != preState)
@@ -183,23 +183,22 @@ void wallFollow()
         }
         if (jump>0)
         {
-          encoderPid();
-          //forwardBase();
+          //encoderPid();
+          forwardBase();
           jump = jump-1;
         }
         else
         {
           leftPid();
           forward();
-          //forwardBase();
         }
     }
-    else if((tof[0]+tof[5])/2 > 75 && (tof[4]+tof[6])/2 > 75)   //no walls
+    else if((tof[0]+tof[5])/2 > 70 && (tof[4]+tof[6])/2 > 70)   //no walls
     {
         state = 3;
-        encoderPid();
-        //forwardBase();
+        //encoderPid();
+        forwardBase();
         wallLastError = 0;
     }
     preState = state;
-}  
+}   

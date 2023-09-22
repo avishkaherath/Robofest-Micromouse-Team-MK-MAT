@@ -29,90 +29,147 @@ void cellMiddle() {
 }
 
 
+//-----------------------------------------------------------------------------------------------
+
+
 void cellPara() {
-  tofPid();
-  if (state = 0) {
-    if (tof[0] > tof[4]) {
-      int encoderRightCount = (tof[0] - tof[4]) * 1.4;
-      int encoderLeftCount = (tof[0] - tof[4]) * 1.4;
-      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
-      {
-        turnLeft();
-        delay(10);
-      }
-      brake();
+  //  tofPid();
+  //  if ((tof[0] + tof[5]) / 2 <= 70) {
+  //    if (tof[0] > tof[5]) {
+  //      int encoderRightCount = (tof[0] - tof[5]) * 0.9;
+  //      int encoderLeftCount = (tof[0] - tof[5]) * 0.9;
+  //      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+  //      {
+  //        turnLeft();
+  //        delay(10);
+  //      }
+  //      brake();
+  //    }
+  //    else if (tof[0] < tof[5]) {
+  //      int encoderRightCount = (tof[5] - tof[0]) * 0.9;
+  //      int encoderLeftCount = (tof[5] - tof[0]) * 0.9;
+  //      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+  //      {
+  //        turnRight();
+  //        delay(10);
+  //      }
+  //      brake();
+  //    }
+  //  }
+  //  else if ((tof[4] + tof[6]) / 2 <= 70) {
+  //    if (tof[4] > tof[6]) {
+  //      int encoderRightCount = (tof[4] - tof[6]) * 0.9;
+  //      int encoderLeftCount = (tof[4] - tof[6]) * 0.9;
+  //      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+  //      {
+  //        turnRight();
+  //        delay(10);
+  //      }
+  //      brake();
+  //    }
+  //    else if (tof[4] < tof[6]) {
+  //      int encoderRightCount = (tof[6] - tof[4]) * 0.9;
+  //      int encoderLeftCount = (tof[6] - tof[4]) * 0.9;
+  //      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+  //      {
+  //        turnLeft();
+  //        delay(10);
+  //      }
+  //      brake();
+  //    }
+  //  }
+
+
+  if ((tof[0] + tof[5]) / 2 <= 70) {
+    
+    while (tof[0] > tof[5]) {
+
+      //      Serial.print(tof[0]);
+      //      Serial.print(" , ");
+      //      Serial.println(tof[5]);
+      turnLeft();
+      tcaselect(7);
+      //delay(10);
+      tof[0] = lox61.readRange() - 14;
+      tcaselect(0);
+      //delay(10);
+      tof[5] = lox61.readRange() + 1;
     }
-    else if (tof[0] < tof[4]) {
-      int encoderRightCount = (tof[0] - tof[4]) * 1.4;
-      int encoderLeftCount = (tof[0] - tof[4]) * 1.4;
-      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
-      {
-        turnRight();
-        delay(10);
-      }
-      brake();
+    brake();
+
+    while (tof[0] < tof[5]) {
+      Serial.print(tof[0]);
+      Serial.print(" , ");
+      Serial.println(tof[5]);
+      turnRight();
+      tcaselect(7);
+      //delay(10);
+      tof[0] = lox61.readRange() - 14;
+      tcaselect(0);
+      // delay(10);
+      tof[5] = lox61.readRange() + 1;
     }
-  } 
-  else if (state = 1) {
-    if (tof[0] > tof[5]) {
-      int encoderRightCount = (tof[0] - tof[5]) * 1.4;
-      int encoderLeftCount = (tof[0] - tof[5]) * 1.4;
-      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
-      {
-        turnLeft();
-        delay(10);
-      }
-      brake();
+    brake();
+  }
+
+  else if ((tof[4] + tof[6]) / 2 <= 70) {
+    while (tof[4] > tof[6]) {
+      //
+      //      Serial.print(tof[0]);
+      //      Serial.print(" , ");
+      //      Serial.println(tof[5]);
+      turnRight();
+      tcaselect(2);
+//    delay(10);  
+    tof[4] = lox61.readRange() - 4;
+      tcaselect(1);
+//    delay(10);  
+    tof[6] = lox61.readRange() - 6;
     }
-    else if (tof[0] < tof[5]) {
-      int encoderRightCount = (tof[0] - tof[5]) * 1.4;
-      int encoderLeftCount = (tof[0] - tof[5]) * 1.4;
-      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
-      {
-        turnRight();
-        delay(10);
-      }
-      brake();
+    brake();
+
+    while (tof[4] < tof[6]) {
+      //      Serial.print(tof[0]);
+      //      Serial.print(" , ");
+      //      Serial.println(tof[5]);
+      turnLeft();
+     tcaselect(2);
+//    delay(10);  
+    tof[4] = lox61.readRange() - 4;
+      tcaselect(1);
+//    delay(10);  
+    tof[6] = lox61.readRange() - 6;
     }
-  } 
-  else if (state = 2) {
-    if (tof[4] > tof[6]) {
-      int encoderRightCount = (tof[4] - tof[6]) * 1.4;
-      int encoderLeftCount = (tof[4] - tof[6]) * 1.4;
-      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
-      {
-        turnRight();
-        delay(10);
-      }
-      brake();
-    }
-    else if (tof[4] < tof[6]) {
-      int encoderRightCount = (tof[4] - tof[6]) * 1.4;
-      int encoderLeftCount = (tof[4] - tof[6]) * 1.4;
-      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
-      {
-        turnLeft();
-        delay(10);
-      }
-      brake();
-    }
+    brake();
   }
 }
+
+
+//------------------------------------------------------------------------------------------
 
 void goCell() {
   rightEncoder = 0;
   leftEncoder = 0;
-  encoderRightCount = 225;
-  encoderLeftCount = 225;
+  encoderRightCount = 50;
+  encoderLeftCount = 50;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
-    //wallFollow();
-    forwardBase();
+    rightForward(rightBase + 10);
+    leftForward(leftBase + 5);
+    delay(10);
+  }
+  encoderRightCount += 235;
+  encoderLeftCount += 235;
+  while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+  {
+    wallFollow();
     delay(10);
   }
   brake();
-//  cellMiddle();
 //  cellPara();
+//  delay(50);
+  cellMiddle();
+  delay(50);
 }
 
 
