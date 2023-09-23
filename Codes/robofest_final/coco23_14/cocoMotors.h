@@ -1,7 +1,7 @@
 void countLeftOut1()
 {
-  leftEncoder1 ++;
-  leftEncoder = leftEncoder1*1.12;
+  leftEncoder ++;
+  //leftEncoder = leftEncoder1*1.12;
 }
 
 void countRightOut1()
@@ -116,7 +116,12 @@ void forceStart(){
   delay(100);
   }
   
-
+void forceReverse(){
+  rightReverse(rightBase + 10);
+  leftReverse(leftBase + 5);
+  delay(100);
+  }
+  
 void turnRight()
 {
   leftForward(leftPwm);

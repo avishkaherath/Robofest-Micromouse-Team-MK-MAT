@@ -105,7 +105,7 @@ void tofStart()
 
 bool wallLeft(){
   tofPid();
-  if((tof[0]+tof[5])/2 < 70){
+  if((tof[0]+tof[5])/2 < 80){
     return true;
     }
     else{
@@ -115,7 +115,7 @@ bool wallLeft(){
 
 bool wallRight(){
   tofPid();
-  if((tof[4]+tof[6])/2 < 70){
+  if((tof[4]+tof[6])/2 < 80){
     return true;
     }
     else{

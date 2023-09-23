@@ -125,7 +125,7 @@ bool wallRight(){
 
 bool wallFront(){
   tofStart();
-  if(tof[2] < 120){
+  if(tof[2] < 100){
     return true;
     }
     else{
@@ -144,7 +144,7 @@ void checkWallsCell()
         while(Time <10)
         {
             tofStart();
-            if (tof[2] <= 180)
+            if (wallFront())
             {
             frontWallAvailable = frontWallAvailable + 1;
             }
@@ -152,7 +152,7 @@ void checkWallsCell()
             {
             frontWallAvailable = frontWallAvailable - 1;
             }
-            if (tof[1] <= 150)
+            if (wallLeft())
             {
             leftWallAvailable= leftWallAvailable + 1;
             }
@@ -160,7 +160,7 @@ void checkWallsCell()
             {
             leftWallAvailable= leftWallAvailable - 1;
             }
-            if (tof[3] <= 150)
+            if (wallRight())
             {
             rightWallAvailable= rightWallAvailable + 1;
             }

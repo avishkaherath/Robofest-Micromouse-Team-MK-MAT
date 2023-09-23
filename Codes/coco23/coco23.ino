@@ -27,24 +27,21 @@ void setup() {
 
 void loop() {
 
-//        if(!wallLeft()){
-//            leftAboutTurn();
-//            delay(250);
-//        }
-//
-//        else if(wallLeft() && wallRight() && wallFront()){
-//            turnBack();
-//            delay(250);
-//  
-//          }
-//        else if (wallLeft()&& wallFront()){
-//          rightAboutTurn();
-//          delay(250);
-//        }
-//             
-//        goCell();
-//        delay(250);
-          wallFollow();
-          delay(10);
+        if(!wallLeft()){
+            leftAboutTurn();
+        }
+
+        else if(wallLeft() && wallRight() && wallFront()){
+            turnBack();
+  
+          }
+        else if (wallLeft()&& wallFront()){
+          rightAboutTurn();
+        }
+             
+        goCell();
+        delay(250);
+//          wallFollow();
+//          delay(10);
 
 }
