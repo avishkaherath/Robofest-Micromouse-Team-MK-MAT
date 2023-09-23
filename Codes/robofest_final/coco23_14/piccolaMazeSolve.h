@@ -344,6 +344,7 @@ void writeCells(){
 }
 
 
+<<<<<<< Updated upstream
 // void searchStates(){
 //   byte searchState= EEPROM.read(200);
 
@@ -413,12 +414,84 @@ void writeCells(){
 //      // buzzDone();
 //     }
 //   }
+=======
+void searchStates(){
+  byte searchState= EEPROM.read(200);
+
+  if (searchState==3){ 
+    searchState=0; }
+  loadCells();    // read cells from EEPROM
+
+
+  if (searchState==0){
+    mazeStart();
+      if (selectMode==1){
+        traverse(0,0,true,false,false);
+        L= false; R= false; F= false;
+        center();
+        brake();
+        
+        delay(3000);
+        writeCells();
+        traverse(13,0,false,false,false);
+        brake();
+        
+        traverse(0,0,false,false,false);
+        brake();
+        
+        fixOrientation();
+        delay(3000);
+        mazeStart();
+
+        if (selectMode==2){
+          writeCells();
+          EEPROM.write(200,searchState+1);
+        }
+        else if(selectMode==3){
+          eepromClear();
+          delay(1000);
+          
+        }
+    }
+
+    else if (selectMode==2){
+        traverse(0,0,true,true,false);
+        L= false; R= false; F= false;
+        center();
+        brake();
+        //buzz();
+        delay(3000);
+        traverse(0,0,false,false,false);
+        brake();
+        //buzz();
+        fixOrientation();
+        delay(3000);
+        mazeStart();
+
+        if (selectMode==2){
+          writeCells();
+        }
+        else if(selectMode==3){
+          eepromClear();
+          delay(1000);
+         // buzzDone();
+        
+        }
+    }
+    else if (selectMode==3){
+      eepromClear();
+      delay(1000);
+     // buzzDone();
+    }
+  }
+>>>>>>> Stashed changes
 
 
 
 
 
   
+<<<<<<< Updated upstream
 //   else if (searchState==1){
 //     mazeStart();
 //     if (selectMode==1){
@@ -474,12 +547,70 @@ void writeCells(){
     
 //     }
 //   }
+=======
+  else if (searchState==1){
+    mazeStart();
+    if (selectMode==1){
+      traverse(0,0,true,false,false);
+      L=0; R=0; F=0;
+      brake();
+      center();
+      traverse(0,13,false,false,false);
+      brake();
+     
+      delay(500);
+      traverse(0,0,false,false,false);
+      brake();
+      fixOrientation();
+      mazeStart();
+
+      if (selectMode==2){
+        writeCells();
+        EEPROM.write(200,searchState+1);
+      }
+      else if (selectMode==3){
+        eepromClear();
+       // buzzDone();
+      }
+
+    }
+    else if(selectMode==2){
+      floodFill2();
+      traverse(0,0,true,true,false);
+      L=0; R=0; F=0;
+      brake();
+      center();
+      
+      delay(500);
+      traverse(0,0,false,false,false);
+      brake();
+      fixOrientation();
+      mazeStart();
+
+      if (selectMode==2){
+        writeCells();
+      }
+      else if (selectMode==3){
+        eepromClear();
+        delay(1000);
+        
+      }
+    }
+    else if(selectMode==3){
+      eepromClear();
+      delay(1000);
+      
+    
+    }
+  }
+>>>>>>> Stashed changes
   
   
   
   
   
   
+<<<<<<< Updated upstream
 //   else if(searchState==2){
 //     mazeStart();
 //     if (selectMode==1){
@@ -538,11 +669,75 @@ void writeCells(){
 //     }
 
 //   }
+=======
+  else if(searchState==2){
+    mazeStart();
+    if (selectMode==1){
+      traverse(0,0,true,false,false);
+      L=0; R=0; F=0;
+      brake();
+      center();
+      
+      delay(500);
+      traverse(13,13,false,false,false);
+      brake();
+      
+      delay(500);
+      traverse(0,0,false,false,false);
+      brake();
+      fixOrientation();
+      mazeStart();
+
+      if (selectMode==2){
+        writeCells();
+        EEPROM.write(200,searchState+1);
+      }
+      else if (selectMode==3){
+        eepromClear();
+        
+      }
+    }
+    else if(selectMode==2){
+      floodFill2();
+      traverse(0,0,true,true,false);
+      L=0; R=0; F=0;
+      brake();
+      center();
+      
+      delay(500);
+      traverse(0,0,false,false,false);
+      brake();
+      fixOrientation();
+      mazeStart();
+
+      if (selectMode==2){
+        writeCells();
+    }
+      else if (selectMode==3){
+        eepromClear();
+        delay(1000);
+        
+    }
+    
+    }
+    else if(selectMode==3){
+      eepromClear();
+      delay(1000);
+      
+    
+    }
+
+  }
+>>>>>>> Stashed changes
     
   
   
 
 
+<<<<<<< Updated upstream
 // }
+=======
+}
+>>>>>>> Stashed changes
 
 

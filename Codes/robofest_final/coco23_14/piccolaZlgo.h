@@ -501,6 +501,7 @@ char toMove2(){
 }
 
 
+<<<<<<< Updated upstream
 // void center(){
 //   if (x == 6 && y == 6){
 //     cells[7][6] = 8;
@@ -547,3 +548,52 @@ char toMove2(){
 //     }   
 //   }
 // }
+=======
+
+void center(){
+  if (x == 6 && y == 6){
+    cells[7][6] = 8;
+    cells[7][7] = 7;
+    cells[6][7] = 6;
+    if (orient == 0){
+      cells[6][6] = 1;
+    }
+    else if (orient == 1){
+      cells[6][6] = 4;
+    }   
+  }
+  else if (x == 7 && y == 6){
+    cells[7][7] = 7;
+    cells[6][7] = 6;
+    cells[6][6] = 5;
+    if (orient == 1){
+      cells[7][6] = 2;
+    }
+    else if (orient == 2){
+      cells[7][6] = 1;
+    }   
+  }
+  else if (x == 7 && y == 7){
+    cells[6][7] = 6;
+    cells[6][6] = 5;
+    cells[7][6] = 8;
+    if (orient == 2){
+      cells[7][7] = 3;
+    }
+    else if (orient == 3){
+      cells[7][7] = 2;
+    }   
+  }
+  else if (x == 6 && y == 7){
+    cells[6][6] = 5;
+    cells[7][6] = 8;
+    cells[6][7] = 7;
+    if (orient == 0){
+      cells[6][7] = 3;
+    }
+    else if (orient == 3){
+      cells[6][7] = 4;
+    }   
+  }
+}
+>>>>>>> Stashed changes

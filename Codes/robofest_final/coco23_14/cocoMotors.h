@@ -1,7 +1,11 @@
 void countLeftOut1()
 {
   leftEncoder1 ++;
+<<<<<<< Updated upstream
   //leftEncoder = leftEncoder1*1.12;
+=======
+  leftEncoder = leftEncoder1*1.12;
+>>>>>>> Stashed changes
 }
 
 void countRightOut1()
