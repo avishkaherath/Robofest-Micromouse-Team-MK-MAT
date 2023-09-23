@@ -37,7 +37,7 @@ float leftError = 0;
 float leftLastError = 0;
 float leftDiff = 0;
 
-float rightP = 0.2; //0.2
+float rightP = 0.18; //0.2
 float rightD = 4;  //4
 
 float rightError = 0;
@@ -51,7 +51,7 @@ float wallError = 0;
 float wallLastError = 0;
 float wallDiff = 0;
 
-float encoderP = 0.2;
+float encoderP = 0.3;
 float encoderD = 0;
 
 float encoderError = 0;

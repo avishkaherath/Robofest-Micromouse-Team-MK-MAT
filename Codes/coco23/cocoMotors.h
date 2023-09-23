@@ -115,6 +115,12 @@ void forceStart(){
   leftForward(leftBase + 5);
   delay(100);
   }
+
+void forceReverse(){
+  rightReverse(rightBase + 10);
+  leftReverse(leftBase + 5);
+  delay(100);
+  }
   
 
 void turnRight()
