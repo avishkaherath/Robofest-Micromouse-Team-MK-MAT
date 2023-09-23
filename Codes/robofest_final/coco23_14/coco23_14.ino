@@ -3,7 +3,6 @@
 //#include "QueueArray.h"
 #include "cocoVariables.h"
 #include "piccolaZlgoVariables.h"
-#include "piccolaZlgo.h"
 #include "cocoPins.h"
 #include "cocoTof.h"
 #include "cocoMotors.h"
@@ -11,8 +10,11 @@
 #include "cocoMoves.h"
 #include "cocoSpeed.h"
 #include "cocoTurns.h"
-#include "piccolaMazeSolve.h"
 
+#include "piccolaZlgo.h"
+#include "new_functions.h"
+
+#include "piccolaMazeSolve.h"
 #include "EEPROM.h"
 
 
@@ -57,7 +59,7 @@ void loop() {
   delay(1000);
     //searchStates();
 
-    while(1){
+   while(1){
   L=wallLeft();
   R=wallRight();
   F=wallFront();
@@ -75,21 +77,21 @@ void loop() {
 
     
     floodFill3();
-                
   }
+                
+  
   else{
 
     if(state==1){
-     appendDestination(0,0,false);
+     changeDestination(0,0);
       state+=1;
 
     }
     else if(state==0){
       center();
-      appendDestination(13,0,false);
+      changeDestination(13,0);
       state=state+1;
     }
-
 
   }
   floodFill2();
@@ -125,6 +127,7 @@ yprev=y;
 x,y = updateCoordinates();
 
 }
+}
   
 
-}
+

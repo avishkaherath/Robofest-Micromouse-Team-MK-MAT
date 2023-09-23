@@ -1,6 +1,6 @@
 #include <QueueArray.h>
 
-while(1){
+  while(1){
   L=wallLeft();
   R=wallRight();
   F=wallFront();
@@ -16,23 +16,23 @@ while(1){
       }
 
 
-    }
+    
     floodFill3();
-                
   }
+                
+  
   else{
 
     if(state==1){
-     appendDestination(0,0,true);
+     changeDestination(0,0);
       state+=1;
 
     }
     else if(state==0){
       center();
-      sppendDestination(13,0,false);
+      changeDestination(13,0);
       state=state+1;
     }
-
 
   }
   floodFill2();
@@ -51,7 +51,7 @@ if(dir=='L'){
 }
 
 else if(dir=='R'){
-  righttAboutTurn();
+  rightAboutTurn();
   delay(500);
   orient = orientation(orient,'R');
 }
@@ -65,6 +65,7 @@ else if(dir=='B'){
 goCell();
 xprev=x;
 yprev=y;
-x,y = updateCoordinates(x,y,orient);
+x,y = updateCoordinates();
 
 }
+
