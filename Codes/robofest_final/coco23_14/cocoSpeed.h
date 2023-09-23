@@ -1,13 +1,23 @@
 void cellMiddle() {
   tofStart();
-  if (tof[2] < 100) {
+  if (tof[2] < 100) {   //100
     rightEncoder = 0;
-    leftEncoder = 0;
-    leftPwm = leftBase;
-    rightPwm = rightBase;
-    if (tof[2] > 45) {
-      int encoderRightCount = (tof[2] - 40) * 1.4;
-      int encoderLeftCount = (tof[2] - 40) * 1.4;
+    leftEncoder1 = 0;
+
+    if (tof[2] > 35) {
+      leftPwm = leftBase+20;
+      rightPwm = rightBase+20;
+      encoderRightCount = (tof[2] - 30) * 0.4;     //30
+       encoderLeftCount = (tof[2] - 30) * 0.4;     //30
+      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+      {
+        forward();
+        delay(10);
+      }
+      leftPwm = leftBase;
+      rightPwm = rightBase;
+       encoderRightCount += (tof[2] - 30) ;    //30  
+       encoderLeftCount += (tof[2] - 30) ;     //30
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         forward();
@@ -15,9 +25,20 @@ void cellMiddle() {
       }
       brake();
     }
-    else if (tof[2] < 40) {
-      int encoderRightCount = (40 - tof[2]) * 1.4;
-      int encoderLeftCount = (40 - tof[2]) * 1.4;
+    else if (tof[2] < 30) {
+      leftPwm = leftBase+20;
+      rightPwm = rightBase+20;
+      encoderRightCount = (30 - tof[2]) * 0.4;   //30
+      encoderLeftCount = (30 - tof[2]) * 0.4;    //30
+      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
+      {
+        reverse();
+        delay(10);
+      }
+      leftPwm = leftBase;
+      rightPwm = rightBase;
+      encoderRightCount += (25 - tof[2]);    //25
+      encoderLeftCount += (30 - tof[2]);     //30
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         reverse();
@@ -161,28 +182,36 @@ void cellPara() {
 //------------------------------------------------------------------------------------------
 
 void goCell() {
+  
+ 
   rightEncoder = 0;
   leftEncoder = 0;
   encoderRightCount = 50;
   encoderLeftCount = 50;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
-    rightForward(rightBase + 10);
-    leftForward(leftBase + 5);
-    delay(10);
+    rightForward(rightBase + 30);
+    leftForward(leftBase + 30);
+    delay(20);   //10
   }
-  encoderRightCount += 200;
-  encoderLeftCount += 200;
+  encoderRightCount += 230;
+  encoderLeftCount += 230;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     wallFollow();
     delay(10);
   }
   brake();
+
+  if(wallLeft() || wallRight()){
   cellPara();
   delay(50);
+  }
+  
   cellMiddle();
   delay(50);
+
+  
 }
 
 
