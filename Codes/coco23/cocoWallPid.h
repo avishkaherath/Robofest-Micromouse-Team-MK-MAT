@@ -139,7 +139,7 @@ void wallFollow()
          jump = 2;
           wallLastError = 0;
         }
-        if (jump>0)
+        if (jump>1)
         {
           forwardBase();
           //encoderPid();
@@ -160,7 +160,7 @@ void wallFollow()
           jump = 0;
           rightLastError = 0;
         }
-        if (jump>0)
+        if (jump>1)
         {
           //encoderPid();
           forwardBase();
@@ -178,7 +178,7 @@ void wallFollow()
         state = 2;
         if (state != preState)
         {
-          jump = 0;
+          jump = 1;
           leftLastError = 0;
         }
         if (jump>0)

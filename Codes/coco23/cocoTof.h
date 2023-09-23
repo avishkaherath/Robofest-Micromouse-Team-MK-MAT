@@ -89,7 +89,7 @@ void tofStart()
 
     tcaselect(2);
 //    delay(10);  
-    tof[4] = lox61.readRange();
+    tof[4] = lox61.readRange() - 4;
     //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("   ");
 
     tcaselect(7);

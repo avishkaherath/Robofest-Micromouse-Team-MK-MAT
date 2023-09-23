@@ -26,37 +26,25 @@ void setup() {
 
 
 void loop() {
-  
-//  if (!wallLeft()) {
-//    leftAboutTurn();
-//    delay(250);
-//  }
-//  while (wallFront()) {
-//    rightAboutTurn();
-//    delay(100);
-//  }
+
+//        if(!wallLeft()){
+//            leftAboutTurn();
+//            delay(250);
+//        }
 //
-//  goCell();
-//  delay(250);
+//        else if(wallLeft() && wallRight() && wallFront()){
+//            turnBack();
+//            delay(250);
+//  
+//          }
+//        else if (wallLeft()&& wallFront()){
+//          rightAboutTurn();
+//          delay(250);
+//        }
+//             
+//        goCell();
+//        delay(250);
+          wallFollow();
+          delay(10);
 
-      while(true) {
-        if(!wallLeft()) {
-            leftAboutTurn();
-        }
-
-        else if(wallLeft() && wallRight() && wallFront()){
-            turnBack();
-  
-          }
-        else if (wallLeft()&& wallFront()){
-          rightAboutTurn();
-        }
-             
-        goCell();
-            encoderPid();
-            forwardBase();
-            delay(50);
-              rightAboutTurn();
-              delay(1000);
-        }
 }
