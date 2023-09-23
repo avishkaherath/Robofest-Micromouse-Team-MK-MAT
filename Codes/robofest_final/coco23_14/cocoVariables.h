@@ -77,3 +77,4 @@ int jump = 0;
 int preState = 0;
 int selectMode = -1;
 //int state = 0;
+//
