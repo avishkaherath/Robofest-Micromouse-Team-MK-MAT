@@ -2,11 +2,11 @@ void cellMiddle() {
   tofStart();
   if (tof[2] < 100) {
     rightEncoder = 0;
-    leftEncoder = 0;
+    leftEncoder1 = 0;
 
     if (tof[2] > 35) {
-      leftPwm = leftBase+10;
-      rightPwm = rightBase+10;
+      leftPwm = leftBase+20;
+      rightPwm = rightBase+20;
       encoderRightCount = (tof[2] - 30) * 0.4;
        encoderLeftCount = (tof[2] - 30) * 0.4;
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
@@ -37,7 +37,7 @@ void cellMiddle() {
       }
       leftPwm = leftBase;
       rightPwm = rightBase;
-      encoderRightCount += (30 - tof[2]);
+      encoderRightCount += (25 - tof[2]);
       encoderLeftCount += (30 - tof[2]);
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
@@ -190,7 +190,7 @@ void goCell() {
   {
     rightForward(rightBase + 30);
     leftForward(leftBase + 30);
-    delay(20);
+    delay(10);
   }
   encoderRightCount += 240;
   encoderLeftCount += 240;
@@ -200,7 +200,7 @@ void goCell() {
     delay(10);
   }
   brake();
-  cellPara();
+  //cellPara();
   delay(50);
   cellMiddle();
   delay(50);

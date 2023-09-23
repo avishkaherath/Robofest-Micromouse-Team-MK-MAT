@@ -1,7 +1,7 @@
 void countLeftOut1()
 {
-  leftEncoder1 ++;
-  leftEncoder = leftEncoder1*1.12;
+  leftEncoder ++;
+//  leftEncoder = leftEncoder1*1.12;
 }
 
 void countRightOut1()
