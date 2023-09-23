@@ -1,10 +1,6 @@
 #include <QueueArray.h>
 
-<<<<<<< Updated upstream
-  while(1){
-=======
 while(1){
->>>>>>> Stashed changes
   L=wallLeft();
   R=wallRight();
   F=wallFront();
@@ -20,17 +16,6 @@ while(1){
       }
 
 
-<<<<<<< Updated upstream
-    
-    floodFill3();
-  }
-                
-  
-  else{
-
-    if(state==1){
-     changeDestination(0,0);
-=======
     }
     floodFill3();
                 
@@ -39,24 +24,16 @@ while(1){
 
     if(state==1){
      appendDestination(0,0,true);
->>>>>>> Stashed changes
       state+=1;
 
     }
     else if(state==0){
       center();
-<<<<<<< Updated upstream
-      changeDestination(13,0);
-      state=state+1;
-    }
-
-=======
       sppendDestination(13,0,false);
       state=state+1;
     }
 
 
->>>>>>> Stashed changes
   }
   floodFill2();
 
@@ -74,11 +51,7 @@ if(dir=='L'){
 }
 
 else if(dir=='R'){
-<<<<<<< Updated upstream
-  rightAboutTurn();
-=======
   righttAboutTurn();
->>>>>>> Stashed changes
   delay(500);
   orient = orientation(orient,'R');
 }
@@ -92,13 +65,6 @@ else if(dir=='B'){
 goCell();
 xprev=x;
 yprev=y;
-<<<<<<< Updated upstream
-x,y = updateCoordinates();
-
-}
-
-=======
 x,y = updateCoordinates(x,y,orient);
 
 }
->>>>>>> Stashed changes

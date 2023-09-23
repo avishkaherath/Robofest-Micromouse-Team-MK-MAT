@@ -1,25 +1,5 @@
 void cellMiddle() {
   tofStart();
-<<<<<<< Updated upstream
-  if (tof[2] < 100) {   //100
-    rightEncoder = 0;
-    leftEncoder1 = 0;
-
-    if (tof[2] > 35) {
-      leftPwm = leftBase+20;
-      rightPwm = rightBase+20;
-      encoderRightCount = (tof[2] - 30) * 0.4;     //30
-       encoderLeftCount = (tof[2] - 30) * 0.4;     //30
-      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
-      {
-        forward();
-        delay(10);
-      }
-      leftPwm = leftBase;
-      rightPwm = rightBase;
-       encoderRightCount += (tof[2] - 30) ;    //30  
-       encoderLeftCount += (tof[2] - 30) ;     //30
-=======
   if (tof[2] < 100) {
     rightEncoder = 0;
     leftEncoder = 0;
@@ -28,7 +8,6 @@ void cellMiddle() {
     if (tof[2] > 45) {
       int encoderRightCount = (tof[2] - 40) * 1.4;
       int encoderLeftCount = (tof[2] - 40) * 1.4;
->>>>>>> Stashed changes
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         forward();
@@ -36,26 +15,9 @@ void cellMiddle() {
       }
       brake();
     }
-<<<<<<< Updated upstream
-    else if (tof[2] < 30) {
-      leftPwm = leftBase+20;
-      rightPwm = rightBase+20;
-      encoderRightCount = (30 - tof[2]) * 0.4;   //30
-      encoderLeftCount = (30 - tof[2]) * 0.4;    //30
-      while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
-      {
-        reverse();
-        delay(10);
-      }
-      leftPwm = leftBase;
-      rightPwm = rightBase;
-      encoderRightCount += (25 - tof[2]);    //25
-      encoderLeftCount += (30 - tof[2]);     //30
-=======
     else if (tof[2] < 40) {
       int encoderRightCount = (40 - tof[2]) * 1.4;
       int encoderLeftCount = (40 - tof[2]) * 1.4;
->>>>>>> Stashed changes
       while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
       {
         reverse();
@@ -199,55 +161,28 @@ void cellPara() {
 //------------------------------------------------------------------------------------------
 
 void goCell() {
-<<<<<<< Updated upstream
-  
- 
-=======
->>>>>>> Stashed changes
   rightEncoder = 0;
   leftEncoder = 0;
   encoderRightCount = 50;
   encoderLeftCount = 50;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
-<<<<<<< Updated upstream
-    rightForward(rightBase + 30);
-    leftForward(leftBase + 30);
-    delay(20);   //10
-  }
-  encoderRightCount += 230;
-  encoderLeftCount += 230;
-=======
     rightForward(rightBase + 10);
     leftForward(leftBase + 5);
     delay(10);
   }
   encoderRightCount += 200;
   encoderLeftCount += 200;
->>>>>>> Stashed changes
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     wallFollow();
     delay(10);
   }
   brake();
-<<<<<<< Updated upstream
-
-  if(wallLeft() || wallRight()){
-  cellPara();
-  delay(50);
-  }
-  
-  cellMiddle();
-  delay(50);
-
-  
-=======
   cellPara();
   delay(50);
   cellMiddle();
   delay(50);
->>>>>>> Stashed changes
 }
 
 

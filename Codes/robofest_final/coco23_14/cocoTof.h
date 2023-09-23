@@ -105,11 +105,7 @@ void tofStart()
 
 bool wallLeft(){
   tofPid();
-<<<<<<< Updated upstream
-  if((tof[0]+tof[5])/2 < 70){
-=======
   if((tof[0]+tof[5])/2 < 80){
->>>>>>> Stashed changes
     return true;
     }
     else{
@@ -119,11 +115,7 @@ bool wallLeft(){
 
 bool wallRight(){
   tofPid();
-<<<<<<< Updated upstream
-  if((tof[4]+tof[6])/2 < 70){
-=======
   if((tof[4]+tof[6])/2 < 80){
->>>>>>> Stashed changes
     return true;
     }
     else{
@@ -133,11 +125,7 @@ bool wallRight(){
 
 bool wallFront(){
   tofStart();
-<<<<<<< Updated upstream
-  if(tof[2] < 100){
-=======
   if(tof[2] < 120){
->>>>>>> Stashed changes
     return true;
     }
     else{
@@ -155,13 +143,8 @@ void checkWallsCell()
         Time = 0;
         while(Time <10)
         {
-<<<<<<< Updated upstream
-            tofPid();
-            if (wallFront())
-=======
             tofStart();
             if (tof[2] <= 180)
->>>>>>> Stashed changes
             {
             frontWallAvailable = frontWallAvailable + 1;
             }
@@ -169,11 +152,7 @@ void checkWallsCell()
             {
             frontWallAvailable = frontWallAvailable - 1;
             }
-<<<<<<< Updated upstream
-            if (wallLeft())
-=======
             if (tof[1] <= 150)
->>>>>>> Stashed changes
             {
             leftWallAvailable= leftWallAvailable + 1;
             }
@@ -181,11 +160,7 @@ void checkWallsCell()
             {
             leftWallAvailable= leftWallAvailable - 1;
             }
-<<<<<<< Updated upstream
-            if (wallRight())
-=======
             if (tof[3] <= 150)
->>>>>>> Stashed changes
             {
             rightWallAvailable= rightWallAvailable + 1;
             }
