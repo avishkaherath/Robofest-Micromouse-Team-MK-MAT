@@ -107,12 +107,12 @@ void tofFront() {
   tcaselect(6);
   //    delay(10);
   tof[1] = lox61.readRange();
-  Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
+  //Serial.print("tof[1] "); Serial.print(tof[1]); Serial.print("   ");
 
   tcaselect(3);
   //    delay(10);
   tof[3] = lox61.readRange();
-  Serial.print("tof[3] "); Serial.print(tof[3]); Serial.println("");
+  //Serial.print("tof[3] "); Serial.print(tof[3]); Serial.println("");
 
 }
 

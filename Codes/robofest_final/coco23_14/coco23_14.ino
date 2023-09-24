@@ -1,8 +1,8 @@
 #include "Wire.h"
 #include "Adafruit_VL6180X.h"
 #include "cocoVariables.h"
-#include "piccolaZlgoVariables.h"
-#include "piccolaZlgo.h"
+#include "cocoZlgoVariables.h"
+#include "cocoZlgo.h"
 #include "cocoPins.h"
 #include "cocoTof.h"
 #include "cocoMotors.h"
@@ -10,8 +10,8 @@
 #include "cocoMoves.h"
 #include "cocoSpeed.h"
 #include "cocoTurns.h"
-#include "new_functions.h"
-#include "piccolaMazeSolve.h"
+#include "cocoNewFunctions.h"
+#include "cocoMazeSolve.h"
 #include "EEPROM.h"
 
 
@@ -36,19 +36,19 @@ void setup() {
   //      goCell();
   //      goCell();
 
-  while (true) {
-                  if(!wallLeft()){
-                leftAboutTurn();
-            }
-    
-            else if(wallLeft() && wallRight() && wallFront()){
-                turnBack();
-    
-              }
-            else if (wallLeft()&& wallFront()){
-              rightAboutTurn();
-            }
-            goCell();
+//  while (true) {
+//                  if(!wallLeft()){
+//                leftAboutTurn();
+//            }
+//    
+//            else if(wallLeft() && wallRight() && wallFront()){
+//                turnBack();
+//    
+//              }
+//            else if (wallLeft()&& wallFront()){
+//              rightAboutTurn();
+//            }
+//            goCell();
 //            wallFollow();
 //            delay(50);
 //            forwardBase();
@@ -63,7 +63,7 @@ void setup() {
 //    tofFront();
 //    cellPara();
 //    delay(1000);
- }
+// }
 
 
 }

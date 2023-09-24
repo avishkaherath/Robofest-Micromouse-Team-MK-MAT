@@ -185,12 +185,3 @@ void rightHalfTurn()
   leftEncoder = 0;
   rightEncoder = 0;
 }
-
-//---------------------------------------------------------------------------------------
-
-void turnRightPID(){
-  int stepsToTurn = 90;
-  leftEncoder1 = 0;
-  rightEncoder = 0;
-  
-}
