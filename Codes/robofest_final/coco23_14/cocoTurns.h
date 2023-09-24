@@ -40,7 +40,10 @@ void turnBack()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
+  
+  if(wallLeft() || wallRight()){
   cellPara();
+  }
   
   delay(250);
 }
@@ -88,7 +91,10 @@ void rightAboutTurn()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
+
+  if(wallLeft() || wallRight()){
   cellPara();
+  }
   
   delay(250);
 }
@@ -137,7 +143,10 @@ void leftAboutTurn()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
+  
+  if(wallLeft() || wallRight()){
   cellPara();
+  }
 
   delay(250);
 }

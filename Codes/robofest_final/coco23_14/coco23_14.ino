@@ -2,7 +2,6 @@
 #include "Adafruit_VL6180X.h"
 #include "cocoVariables.h"
 #include "cocoZlgoVariables.h"
-#include "cocoZlgo.h"
 #include "cocoPins.h"
 #include "cocoTof.h"
 #include "cocoMotors.h"
@@ -11,6 +10,7 @@
 #include "cocoSpeed.h"
 #include "cocoTurns.h"
 #include "cocoNewFunctions.h"
+#include "cocoZlgo.h"
 #include "cocoMazeSolve.h"
 #include "EEPROM.h"
 
@@ -36,19 +36,19 @@ void setup() {
   //      goCell();
   //      goCell();
 
-//  while (true) {
-//                  if(!wallLeft()){
-//                leftAboutTurn();
-//            }
-//    
-//            else if(wallLeft() && wallRight() && wallFront()){
-//                turnBack();
-//    
-//              }
-//            else if (wallLeft()&& wallFront()){
-//              rightAboutTurn();
-//            }
-//            goCell();
+        while (true) {
+                  if(!wallLeft()){
+                leftAboutTurn();
+            }
+    
+            else if(wallLeft() && wallRight() && wallFront()){
+                turnBack();
+    
+              }
+            else if (wallLeft()&& wallFront()){
+              rightAboutTurn();
+            }
+            goCell();
 //            wallFollow();
 //            delay(50);
 //            forwardBase();
@@ -63,7 +63,7 @@ void setup() {
 //    tofFront();
 //    cellPara();
 //    delay(1000);
-// }
+ }
 
 
 }
@@ -103,12 +103,15 @@ void loop() {
       }
       else if (state == 0) {
         center();
+        writeCells();
         changeDestination(13, 0);
         state = state + 1;
       }
 
+      floodFill2();
+
     }
-    floodFill2();
+    
 
     if (shortPath) {
       dir = toMove2();

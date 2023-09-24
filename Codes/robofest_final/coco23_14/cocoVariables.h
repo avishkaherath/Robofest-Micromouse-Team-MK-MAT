@@ -71,7 +71,7 @@ int Time;
 //bool L,R,F;
 
 boolean left,right,front;
-int cell =0;
+//int cell =0;
 
 int jump = 0;
 int preState = 0;

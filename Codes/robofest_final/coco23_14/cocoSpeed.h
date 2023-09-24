@@ -54,8 +54,8 @@ void cellMiddle() {
 void cellPara() {
 
   if ((tof[0] + tof[5]) / 2 <= 50) {
-    for (int i = 0; i < 3; i++) {
-      while (tof[0] > tof[5]) {
+    for (int i = 0; i < 2; i++) {
+      while (tof[0] - tof[5]>2) {
 
         //      Serial.print(tof[0]);
         //      Serial.print(" , ");
@@ -74,7 +74,7 @@ void cellPara() {
       brake();
       delay(10);
 
-      while (tof[0] < tof[5]) {
+      while (tof[5] - tof[0]> 2) {
         //      Serial.print(tof[0]);
         //      Serial.print(" , ");
         //      Serial.println(tof[5]);
@@ -95,8 +95,8 @@ void cellPara() {
   }
 
   else if ((tof[4] + tof[6]) / 2 <= 50) {
-    for (int i = 0; i < 3; i++) {
-      while (tof[4] > tof[6]) {
+    for (int i = 0; i < 2; i++) {
+      while (tof[4]-tof[6] > 2) {
         //
         //      Serial.print(tof[0]);
         //      Serial.print(" , ");
@@ -115,7 +115,7 @@ void cellPara() {
       brake();
       delay(10);
 
-      while (tof[4] < tof[6]) {
+      while (tof[6] - tof[4] > 2) {
         //      Serial.print(tof[0]);
         //      Serial.print(" , ");
         //      Serial.println(tof[5]);
@@ -134,39 +134,39 @@ void cellPara() {
       delay(10);
     }
   }
-  else if (tof[2] <= 50) {
-    tofFront();
-    for (int i = 0; i < 3; i++) {
-      while (tof[1] - tof[3] >= 2 ) {
-        //
-        //      Serial.print(tof[0]);
-        //      Serial.print(" , ");
-        //      Serial.println(tof[5]);
-        dif = tof[1] - tof[3];
-        leftPwm = 81 - 20 / (1 + pow(2.73, dif * 0.05));
-        rightPwm = 85 - 20 / (1 + pow(2.73, dif * 0.05));
-        turnRight();
-        tofFront();
-      }
-      brake();
-      delay(10);
-
-      while (tof[3] - tof[1]>2) {
-        //      Serial.print(tof[0]);
-        //      Serial.print(" , ");
-        //      Serial.println(tof[5]);
-        dif = tof[3] - tof[1];
-        leftPwm = 81 - 20 / (1 + pow(2.73, dif * 0.05));
-        rightPwm = 85 - 20 / (1 + pow(2.73, dif * 0.05));
-        turnLeft();
-        tofFront();
-      }
-      brake();
-      delay(10);
-    }
-  }
-  leftPwm = leftBase;
-  rightPwm = rightBase;
+//  else if (tof[2] <= 50) {
+//    tofFront();
+//    for (int i = 0; i < 2; i++) {
+//      while (tof[1] - tof[3] >= 2 ) {
+//        //
+//        //      Serial.print(tof[0]);
+//        //      Serial.print(" , ");
+//        //      Serial.println(tof[5]);
+//        dif = tof[1] - tof[3];
+//        leftPwm = 81 - 20 / (1 + pow(2.73, dif * 0.05));
+//        rightPwm = 85 - 20 / (1 + pow(2.73, dif * 0.05));
+//        turnRight();
+//        tofFront();
+//      }
+//      brake();
+//      delay(10);
+//
+//      while (tof[3] - tof[1]>2) {
+//        //      Serial.print(tof[0]);
+//        //      Serial.print(" , ");
+//        //      Serial.println(tof[5]);
+//        dif = tof[3] - tof[1];
+//        leftPwm = 81 - 20 / (1 + pow(2.73, dif * 0.05));
+//        rightPwm = 85 - 20 / (1 + pow(2.73, dif * 0.05));
+//        turnLeft();
+//        tofFront();
+//      }
+//      brake();
+//      delay(10);
+//    }
+//  }
+//  leftPwm = leftBase;
+//  rightPwm = rightBase;
 }
 
 //------------------------------------------------------------------------------------------
