@@ -168,9 +168,9 @@ void center(){
 }
 
 char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
-
+    
     x_0,y_0,x_1,y_1,x_2,y_2,x_3,y_3 = getSurrounds(x,y);
-
+    
     byte val= flood[y][x];
     byte prev=0;
     byte minVals[4]={254,254,254,254};
@@ -189,7 +189,7 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
     }
     // else
     //   minVals[0]=254;
-
+    
     if (isAccessible(x,y,x_1,y_1)){
         if (x_1==xprev && y_1==yprev)
             prev=1;
@@ -197,12 +197,12 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
         //     visited[1]= 1;
         // else
         //     visited[1]= 2;
-
+            
         minVals[1]= flood[y_1][x_1];
     }
     // else
     //   minVals[1]=254;
-
+      
     if (isAccessible(x,y,x_2,y_2)){
         if (x_2==xprev && y_2==yprev)
             prev=2;
@@ -214,7 +214,7 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
     }
     // else
     //   minVals[2]=254;
-
+      
     if (isAccessible(x,y,x_3,y_3)){
         if (x_3==xprev && y_3==yprev)
             prev=3;
@@ -227,17 +227,17 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
     // else
     //   minVals[3]=254;
 
-
+    
     byte minVal=254;
     byte minCell=0;
     byte noMovements=0;
-
-
+    
+    
     for (int i=0; i<4;i++){
         if (minVals[i]!= 254){
             noMovements+=1;}
     }
-
+    
     for (int i=0; i<4;i++){
         if (minVals[i]<minVal){
             if (noMovements==1){
@@ -248,7 +248,7 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
                 if(i!=prev){
                     minVal= minVals[i];
                     minCell= i;
-
+                    
                 }
             }
         }
@@ -268,7 +268,7 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
     //         blaCount+=1;
     //     }
     // }
-
+      
     // if (blaCount==0){
     //     for (int i=0; i<4;i++){
     //         if (bla[i]== 1)
@@ -278,7 +278,7 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
 
 
 
-
+    
     if (minCell==orient)
         return ('F');
     else if((minCell==orient-1) || (minCell== orient+3))
@@ -295,11 +295,11 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
 char toMove2(){
 
     x_0,y_0,x_1,y_1,x_2,y_2,x_3,y_3 = getSurrounds(x,y);
-
+    
     byte val= flood2[y][x];
     byte minCell=0;
 
-
+    
     if (isAccessible(x,y,x_0,y_0)){
         if (flood2[y_0][x_0]==val-1)
             minCell=0;
@@ -319,9 +319,9 @@ char toMove2(){
         if (flood2[y_3][x_3]==val-1)
             minCell=3;
     }
+    
 
-
-
+    
     if (minCell==orient)
         dir= 'F';
     else if((minCell==orient-1) || (minCell== orient+3))
@@ -339,3 +339,4 @@ char toMove2(){
 
 
     
+
