@@ -1,7 +1,7 @@
 void leftPid()
 {
     //Serial.println("leftPid");
-    leftError = 30 - tof[0];
+    leftError = 23 - tof[0];
     leftDiff = leftError - leftLastError;
     
     if (leftDiff > 50)
@@ -36,7 +36,7 @@ void leftPid()
 void rightPid()
 {
     //Serial.println("rightPid");
-    rightError = 30 - tof[4];
+    rightError = 23 - tof[4];
     rightDiff = rightError - rightLastError;
     if (rightDiff > 50 )
     {
@@ -72,8 +72,8 @@ void rightPid()
 void wallPid()
 {
   //Serial.println("wallPid");
-  rightLastError = 30 - tof[4];
-    leftLastError = 30 - tof[0];
+  rightLastError = 23 - tof[4];
+    leftLastError = 23 - tof[0];
     
     wallError = tof[0] - tof[4];
     wallDiff = wallError - wallLastError;
@@ -136,7 +136,7 @@ void wallFollow()
         state = 0;
         if (state != preState)
         {
-          jump = 1;
+          jump = 2;
           wallLastError = 0;
         }
         if (jump>0)
@@ -157,7 +157,7 @@ void wallFollow()
         state = 1;
         if (state != preState)
         {
-          jump = 1;
+          jump = 2;     //1
           rightLastError = 0;
         }
         if (jump>0)
@@ -178,7 +178,7 @@ void wallFollow()
         state = 2;
         if (state != preState)
         {
-          jump = 1;
+          jump = 2;
           leftLastError = 0;
         }
         if (jump>0)

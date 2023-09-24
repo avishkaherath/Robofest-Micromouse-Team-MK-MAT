@@ -2,8 +2,8 @@
 // int y = 0;
 // int orient = 0;
 
-int leftBase = 81;        //earlier 81
-int rightBase = 85;       //earlier 85
+int leftBase = 81;        //earlier 81(5.5V)   //90(5.7V)
+int rightBase = 83;       //earlier 85         //83
 int leftPwm = leftBase;
 int rightPwm = rightBase;
 int leftTurnBase = 100;
@@ -30,8 +30,8 @@ int frontWallAvailable = 0;
 int rightWall  = 1;
 int leftWall = 1;
 
-float leftP = 0.2; //0.2
-float leftD = 4;  //4
+float leftP = 0.15; //0.2
+float leftD = 3;  //4
 
 float leftError = 0;
 float leftLastError = 0;
@@ -44,8 +44,8 @@ float rightError = 0;
 float rightLastError = 0;
 float rightDiff = 0;
 
-float wallP = 0.2;  //0.2
-float wallD = 3.2; //3.2
+float wallP = 0.2;  //0.2   //0.15   //0.2     //0.06
+float wallD = 3;    //3     //4      //3.2     //2
 
 float wallError = 0;
 float wallLastError = 0;

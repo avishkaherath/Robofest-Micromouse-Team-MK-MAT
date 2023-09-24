@@ -4,8 +4,8 @@ void turnBack()
   encoderRightCount = 0;
   leftEncoder1 = 0;
   rightEncoder = 0;
-  encoderRightCount = encoderRightCount + 52;
-  encoderLeftCount = encoderLeftCount + 52;
+  encoderRightCount = encoderRightCount + 52;      //52
+  encoderLeftCount = encoderLeftCount + 52;        //52
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
@@ -40,6 +40,9 @@ void turnBack()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
+  cellPara();
+  
+  delay(250);
 }
 
 //-------------------------------- Turn right by 90 degree about axis-------------------------
@@ -49,8 +52,8 @@ void rightAboutTurn()
   encoderRightCount = 0;
   leftEncoder1 = 0;
   rightEncoder = 0;
-  encoderRightCount = encoderRightCount + 41;
-  encoderLeftCount = encoderLeftCount + 44;
+  encoderRightCount = encoderRightCount + 45; //44  //43 //41
+  encoderLeftCount = encoderLeftCount + 48;  //47  //46  //44
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
@@ -85,6 +88,9 @@ void rightAboutTurn()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
+  cellPara();
+  
+  delay(250);
 }
 
 
@@ -95,8 +101,8 @@ void leftAboutTurn()
   encoderRightCount = 0;
   leftEncoder1 = 0;
   rightEncoder = 0;
-  encoderRightCount = encoderRightCount + 59;
-  encoderLeftCount = encoderLeftCount + 59;
+  encoderRightCount = encoderRightCount + 58;       //59
+  encoderLeftCount = encoderLeftCount + 58;           //59
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
@@ -114,8 +120,8 @@ void leftAboutTurn()
     turnLeft();
     delay(10);
   }
-  encoderRightCount = encoderRightCount + 59;
-  encoderLeftCount = encoderLeftCount + 59;
+  encoderRightCount = encoderRightCount + 61;      //59
+  encoderLeftCount = encoderLeftCount + 61;         //59
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     dif = leftEncoder - encoderLeftCount + 50;
@@ -131,6 +137,9 @@ void leftAboutTurn()
   encoderRightCount = 0;
   leftEncoder = 0;
   rightEncoder = 0;
+  cellPara();
+
+  delay(250);
 }
 
 //--------------------------------------------------------------------------------------------------------------
