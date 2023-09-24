@@ -131,7 +131,7 @@ void wallFollow()
 {
     //Serial.println("wall follow");
     tofPid();
-    if ((tof[0]+tof[5])/2 <= 70 && (tof[4]+tof[6])/2 <= 70) //walls exist in both sides
+    if ((tof[0]+tof[5])/2 <= 100 && (tof[4]+tof[6])/2 <= 100) //walls exist in both sides
     {
         state = 0;
         if (state != preState)

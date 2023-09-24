@@ -1,3 +1,5 @@
+#include "Arduino.h"
+//#include <analogWrite.h>
 #include "Wire.h"
 #include "Adafruit_VL6180X.h"
 #include "QueueArray.h"
@@ -11,6 +13,7 @@
 #include "cocoTurns.h"
 
 
+
 void setup() {
   tofSetup();
   Wire.begin();
@@ -22,26 +25,23 @@ void setup() {
   int x = 0;
   int y = 0;
   int orient = 0;
+goCell();
 }
-
-
 void loop() {
+//  if (!wallLeft()) {
+//    leftAboutTurn();
+//    delay(250);
+//  }
+//  while (wallFront()) {
+//    rightAboutTurn();
+//    delay(100);
+//  }
+//
+//  goCell();
+//  delay(250);
 
-        if(!wallLeft()){
-            leftAboutTurn();
-        }
-
-        else if(wallLeft() && wallRight() && wallFront()){
-            turnBack();
-  
-          }
-        else if (wallLeft()&& wallFront()){
-          rightAboutTurn();
-        }
-             
-        goCell();
-        delay(250);
-//          wallFollow();
-//          delay(10);
-
+//leftAboutTurn();
+//delay(750);
+//rightAboutTurn();
+//delay(750);
 }
