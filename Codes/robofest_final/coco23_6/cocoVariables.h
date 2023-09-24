@@ -1,6 +1,6 @@
-int x = 0;
-int y = 0;
-int orient = 0;
+// int x = 0;
+// int y = 0;
+// int orient = 0;
 
 int leftBase = 81;        //earlier 81
 int rightBase = 85;       //earlier 85
@@ -51,7 +51,7 @@ float wallError = 0;
 float wallLastError = 0;
 float wallDiff = 0;
 
-float encoderP = 0.3;
+float encoderP = 0.2;
 float encoderD = 0;
 
 float encoderError = 0;
@@ -67,7 +67,8 @@ int start = 0;
 
 int time1;
 
-bool L,R,F;
+int Time;
+//bool L,R,F;
 
 boolean left,right,front;
 int cell =0;
@@ -75,4 +76,4 @@ int cell =0;
 int jump = 0;
 int preState = 0;
 int selectMode = -1;
-int state = 0;
+//int state = 0;

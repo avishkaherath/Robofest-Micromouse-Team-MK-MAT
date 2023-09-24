@@ -89,7 +89,7 @@ void tofStart()
 
     tcaselect(2);
 //    delay(10);  
-    tof[4] = lox61.readRange() - 4;
+    tof[4] = lox61.readRange();
     //Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("   ");
 
     tcaselect(7);
@@ -132,3 +132,81 @@ bool wallFront(){
       return false;
       }
   }
+
+
+
+
+void checkWallsCell()
+{
+    if (x == 0 && y == 0)
+    {
+        Time = 0;
+        while(Time <10)
+        {
+            tofStart();
+            if (wallFront())
+            {
+            frontWallAvailable = frontWallAvailable + 1;
+            }
+            else
+            {
+            frontWallAvailable = frontWallAvailable - 1;
+            }
+            if (wallLeft())
+            {
+            leftWallAvailable= leftWallAvailable + 1;
+            }
+            else
+            {
+            leftWallAvailable= leftWallAvailable - 1;
+            }
+            if (wallRight())
+            {
+            rightWallAvailable= rightWallAvailable + 1;
+            }
+            else
+            {
+            rightWallAvailable= rightWallAvailable - 1;
+            }
+            Time = Time + 1;
+        }
+    }
+    if (frontWallAvailable >=0 )
+    {
+        cellWalls[1] =  0;
+        F = true;
+        //frontWallAvailable = 0;
+    }
+    else
+    {
+        cellWalls[1] =  1;
+        F = false;
+        //frontWallAvailable = 0;
+    } 
+    if (leftWallAvailable >= 0)
+    {
+        cellWalls[0] = 1;
+        L = true;
+        //leftWallAvailable = 0;
+    }
+    else
+    {
+        cellWalls[0] = 0;
+        L = false;
+        //leftWallAvailable = 0;
+    }
+    if (rightWallAvailable >= 0)
+    {
+        cellWalls[2] = 1;
+        R = true;
+        //rightWallAvailable = 0;
+    }
+    else
+    {
+        cellWalls[2] = 0;
+        R = false;
+        //rightWallAvailable = 0;
+    }
+    
+}
+//
