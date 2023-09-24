@@ -17,6 +17,16 @@
 
 
 void setup() {
+
+byte x=0;
+byte y=0;
+byte cell=0;
+byte xprev=0;
+byte yprev=0;
+byte orient=0;
+byte state=0;
+boolean shortPath= false;
+//char dir ='F';
   tofSetup();
   Wire.begin();
   motorDiver();
@@ -24,9 +34,6 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(ENCL1), countLeftOut1, RISING);
   attachInterrupt(digitalPinToInterrupt(ENCR1), countRightOut1, RISING);
   Serial.begin(9600);
-  int x = 0;
-  int y = 0;
-  int orient = 0;
 
   //    turnBack();
   //    rightAboutTurn();
@@ -36,19 +43,19 @@ void setup() {
   //      goCell();
   //      goCell();
 
-        while (true) {
-                  if(!wallLeft()){
-                leftAboutTurn();
-            }
-    
-            else if(wallLeft() && wallRight() && wallFront()){
-                turnBack();
-    
-              }
-            else if (wallLeft()&& wallFront()){
-              rightAboutTurn();
-            }
-            goCell();
+//        while (true) {
+//                  if(!wallLeft()){
+//                leftAboutTurn();
+//            }
+//    
+//            else if(wallLeft() && wallRight() && wallFront()){
+//                turnBack();
+//    
+//              }
+//            else if (wallLeft()&& wallFront()){
+//              rightAboutTurn();
+//            }
+//            goCell();
 //            wallFollow();
 //            delay(50);
 //            forwardBase();
@@ -63,34 +70,39 @@ void setup() {
 //    tofFront();
 //    cellPara();
 //    delay(1000);
- }
+// }
+//eepromClear();
+
+
 
 
 }
 
 void loop() {
-
   delay(1000);
-  //searchStates();
+  
 
   while (1) {
     L = wallLeft();
     R = wallRight();
     F = wallFront();
+    
     updateWalls(x, y, orient, L, R, F);
+    
 
     if (flood[y][x] != 0) {
       if (state == 0) {
         appendDestination(0, 0, true);
+        
       }
       else if (state == 1) {
         appendDestination(13, 0, false);
+        
         shortPath = false;
       }
 
-
-
       floodFill3();
+      
     }
 
 
@@ -98,12 +110,13 @@ void loop() {
 
       if (state == 1) {
         changeDestination(0, 0);
+        
         state += 1;
 
       }
       else if (state == 0) {
         center();
-        writeCells();
+//        writeCells();
         changeDestination(13, 0);
         state = state + 1;
       }
@@ -115,20 +128,23 @@ void loop() {
 
     if (shortPath) {
       dir = toMove2();
+      
     }
     else {
       dir = toMove(x, y, xprev, yprev, orient);
+      
     }
+    
 
     if (dir == 'L') {
       leftAboutTurn();
-      //delay(250);
+      //delay(100);
       orient = orientation(orient, 'L');
     }
 
     else if (dir == 'R') {
       rightAboutTurn();
-      //delay(250);
+      //delay(100);
       orient = orientation(orient, 'R');
     }
 
@@ -139,9 +155,11 @@ void loop() {
     }
 
     goCell();
+    
     xprev = x;
     yprev = y;
     x, y = updateCoordinates();
+    
 
   }
 }

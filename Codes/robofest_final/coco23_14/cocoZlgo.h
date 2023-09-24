@@ -7,15 +7,14 @@ byte getSurrounds(byte x,byte y){
     y_1=y;
     x_2=x;
     y_2=y-1;
-    if(x_1>= mazeSize){
-        x_1=254;}
-    if(y_0>= mazeSize){
-        y_0=254;}
-    if(x_3== 255){
-        x_3 =254;}
-    if(y_2== 255){
-        y_2=254;}
+    if(x_1>= 14){
+        x_1=-1;}
+    if(y_0>= 14){
+        y_0=-1;}
+       
+   
     return (x_0,y_0,x_1,y_1,x_2,y_2,x_3,y_3);  //order of cells- north,east,south,west
+    
 }
 
 
@@ -33,7 +32,7 @@ void appendDestination(byte xdes,byte ydes, boolean middleSquare){
     }
 
     flood[6][6]=0;
-    flood[6][6]=0;
+    flood[7][6]=0;
     flood[6][7]=0;
     flood[7][7]=0;
 
@@ -59,6 +58,7 @@ void appendDestination(byte xdes,byte ydes, boolean middleSquare){
     queue.enqueue(ydes);
     queue.enqueue(xdes);
     }
+   
 }
 
 
@@ -70,6 +70,7 @@ void changeDestination(byte xdes,byte ydes){
         for (int j=0; j<14; j++){
             flood[i][j]=254;
         }
+      }
       flood[ydes][xdes]=0;
        queue.enqueue(ydes);
        queue.enqueue(xdes);
@@ -79,8 +80,8 @@ void changeDestination(byte xdes,byte ydes){
         xrun=queue.dequeue();
         
         x_0,y_0,x_1,y_1,x_2,y_2,x_3,y_3= getSurrounds(xrun,yrun);
-        if(x_0>=0 && y_0>=0 && cells[y_0][x_0]!=0){
-            if (flood[y_0][x_0]==0){
+        if(x_0>=0 && y_0>=0 ){
+            if (flood[y_0][x_0]==254){
                 
                     flood[y_0][x_0]= flood[yrun][xrun]+1;
                     queue.enqueue(y_0);
@@ -88,8 +89,8 @@ void changeDestination(byte xdes,byte ydes){
                 
             }
         }
-        if(x_1>=0 && y_1>=0 && cells[y_1][x_1]!=0){
-            if (flood[y_1][x_1]==0){
+        if(x_1>=0 && y_1>=0){
+            if (flood[y_1][x_1]==254){
                 
                     flood[y_1][x_1]= flood[yrun][xrun]+1;
                     queue.enqueue(y_1);
@@ -97,8 +98,8 @@ void changeDestination(byte xdes,byte ydes){
                 }
             
         }
-        if(x_2>=0 && y_2>=0 && cells[y_2][x_2]!=0){
-            if (flood[y_2][x_2]==0){
+        if(x_2>=0 && y_2>=0 ){
+            if (flood[y_2][x_2]==254){
                 
                     flood[y_2][x_2]=flood[yrun][xrun]+1;
                     queue.enqueue(y_2);
@@ -106,8 +107,8 @@ void changeDestination(byte xdes,byte ydes){
                 
             }
         }
-        if(x_3>=0 && y_3>=0 && cells[y_3][x_3]!=0){
-            if (flood[y_3][x_3]==0){
+        if(x_3>=0 && y_3>=0 ){
+            if (flood[y_3][x_3]==254){
                 
                     flood[y_3][x_3]=flood[yrun][xrun]+1;
                     queue.enqueue(y_3);
@@ -116,8 +117,8 @@ void changeDestination(byte xdes,byte ydes){
             
         }
      }
+    
       }
-}
 
 
 
@@ -128,24 +129,25 @@ void changeDestination(byte xdes,byte ydes){
 byte orientation(byte orient, char turning){
   if (turning== 'L'){
         orient=orient-1;
-        if (orient==-1)
-            orient=3;
+        if (orient==-1){
+            orient=3;}
   }
     else if(turning== 'R'){
         orient=orient+1;
-        if (orient==4)
-            orient=0;
+        if (orient==4){
+            orient=0;}
     }
     else if(turning== 'B'){
-        if (orient==0)
-            orient=2;
-        else if (orient==1)
-            orient=3;
-        else if (orient==2)
-            orient=0;
-        else if (orient==3)
-            orient=1;
+        if (orient==0){
+            orient=2;}
+        else if (orient==1){
+            orient=3;}
+        else if (orient==2){
+            orient=0;}
+        else if (orient==3){
+            orient=1;}
     }
+  
 
     return(orient);
 }
@@ -157,14 +159,15 @@ byte orientation(byte orient, char turning){
 
 byte updateCoordinates(){//byte x, byte y, byte orient){
     
-    if (orient==0)
-        y=y+1;
-    if (orient==1)
-        x=x+1;
-    if (orient==2)
-        y=y-1;
-    if (orient==3)
-        x=x-1;
+    if (orient==0){
+        y=y+1;}
+    if (orient==1){
+        x=x+1;}
+    if (orient==2){
+        y=y-1;}
+    if (orient==3){
+        x=x-1;}
+        
 
     //return(x,y);
 }
@@ -250,6 +253,7 @@ void updateWalls(byte x, byte y, byte orient, boolean L, boolean R, boolean F){
 
     else
         cells[y][x]= 15;
+       
 
 
 }
@@ -346,6 +350,7 @@ void floodFill3(){
             }
         }
     }
+
 }
 
 
@@ -431,56 +436,39 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
     byte minVals[4]={254,254,254,254};
     //byte visited[4]={2,2,2,2};
 
-
-
     if (isAccessible(x,y,x_0,y_0)){
-        if (x_0==xprev && y_0==yprev)
+        if (x_0==xprev && y_0==yprev){
             prev=0;
-        // if (cells[y_0][x_0]!=0)
-        //     visited[0]= 1;
-        // else
-        //     visited[0]= 2;
+        }
         minVals[0]= flood[y_0][x_0];
     }
-    // else
-    //   minVals[0]=254;
     
     if (isAccessible(x,y,x_1,y_1)){
-        if (x_1==xprev && y_1==yprev)
+        if (x_1==xprev && y_1==yprev){
             prev=1;
-        // if (cells[y_1][x_1]!=0)
-        //     visited[1]= 1;
-        // else
-        //     visited[1]= 2;
-            
+         }   
         minVals[1]= flood[y_1][x_1];
     }
-    // else
-    //   minVals[1]=254;
+    
+    
       
     if (isAccessible(x,y,x_2,y_2)){
-        if (x_2==xprev && y_2==yprev)
+        if (x_2==xprev && y_2==yprev){
             prev=2;
-        // if (cells[y_2][x_2]!=0)
-        //     visited[2]= 1;
-        // else
-        //     visited[2]= 2;
+        }
+        
         minVals[2]= flood[y_2][x_2];
     }
-    // else
-    //   minVals[2]=254;
+  
       
     if (isAccessible(x,y,x_3,y_3)){
-        if (x_3==xprev && y_3==yprev)
+        if (x_3==xprev && y_3==yprev){
             prev=3;
-        // if (cells[y_3][x_3]!=0)
-        //     visited[3]= 1;
-        // else
-        //     visited[3]= 2;
+        }
+        
         minVals[3]= flood[y_3][x_3];
     }
-    // else
-    //   minVals[3]=254;
+   
 
     
     byte minVal=minVals[0];
@@ -500,10 +488,10 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
                 minCell= i;
             }
             else{
-              if(i==prev){
-                
-              }
-                else{
+//              if(i==prev){
+//                
+//              }
+                if(i!=prev){
                     minVal= minVals[i];
                     minCell= i;
                     
@@ -513,38 +501,20 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
     }
 
 
-    // byte bla[4] ={254,254,254,254};
-    // for (int i=0; i<4;i++){
-    //     if (minVals[i]==minVal)
-    //         bla[i]= visited[i];
-    // }
-
-    // byte blaCount=0;
-    // for (int i=0; i<4;i++){
-    //     if (bla[i]== 2){
-    //         minCell=i ;
-    //         blaCount+=1;
-    //     }
-    // }
-      
-    // if (blaCount==0){
-    //     for (int i=0; i<4;i++){
-    //         if (bla[i]== 1)
-    //             minCell=i;
-    //     }
-    // }
+    
 
 
 
     
-    if (minCell==orient)
-        return ('F');
-    else if((minCell==orient-1) || (minCell== orient+3))
-        return('L');
-    else if ((minCell==orient+1) || (minCell== orient-3))
-        return('R');
-    else
-        return('B');
+    if (minCell==orient){
+        return ('F');}
+    else if((minCell==orient-1) || (minCell== orient+3)){
+        return('L');}
+    else if ((minCell==orient+1) || (minCell== orient-3)){
+        return('R');}
+    else{
+        return('B');}
+        delay(1);
 
 
 }
@@ -590,6 +560,7 @@ char toMove2(){
         dir= 'R';
     else
         dir= 'B';
+        
 
 }
 
@@ -597,8 +568,8 @@ char toMove2(){
 
 void center(){
   L=wallLeft();
-  L=wallRight();
-  L=wallFront();
+  R=wallRight();
+  F=wallFront();
 
   if(L){
     updateWalls(x,y,orient,L,R,F);
@@ -608,8 +579,8 @@ void center(){
     x,y = updateCoordinates();
 
     L=wallLeft();
-    L=wallRight();
-    L=wallFront();
+  R=wallRight();
+  F=wallFront();
     updateWalls(x,y,orient,L,R,F);
 
     rightAboutTurn();
@@ -620,8 +591,8 @@ void center(){
     x,y = updateCoordinates();
 
     L=wallLeft();
-    L=wallRight();
-    L=wallFront();
+  R=wallRight();
+  F=wallFront();
     updateWalls(x,y,orient,L,R,F);
 
      rightAboutTurn();
@@ -632,8 +603,8 @@ void center(){
     x,y = updateCoordinates();
 
     L=wallLeft();
-    L=wallRight();
-    L=wallFront();
+  R=wallRight();
+  F=wallFront();
     updateWalls(x,y,orient,L,R,F);
 
      rightAboutTurn();
@@ -644,8 +615,8 @@ void center(){
     x,y = updateCoordinates();
 
     L=wallLeft();
-    L=wallRight();
-    L=wallFront();
+  R=wallRight();
+  F=wallFront();
     updateWalls(x,y,orient,L,R,F);
 
   
@@ -661,8 +632,8 @@ void center(){
     x,y = updateCoordinates();
 
     L=wallLeft();
-    L=wallRight();
-    L=wallFront();
+  R=wallRight();
+  F=wallFront();
     updateWalls(x,y,orient,L,R,F);
 
     leftAboutTurn();
@@ -673,8 +644,8 @@ void center(){
     x,y = updateCoordinates();
 
     L=wallLeft();
-    L=wallRight();
-    L=wallFront();
+  R=wallRight();
+  F=wallFront();
     updateWalls(x,y,orient,L,R,F);
 
      leftAboutTurn();
@@ -685,8 +656,8 @@ void center(){
     x,y = updateCoordinates();
 
     L=wallLeft();
-    L=wallRight();
-    L=wallFront();
+  R=wallRight();
+  F=wallFront();
     updateWalls(x,y,orient,L,R,F);
 
      leftAboutTurn();
@@ -697,12 +668,13 @@ void center(){
     x,y = updateCoordinates();
 
     L=wallLeft();
-    L=wallRight();
-    L=wallFront();
+  R=wallRight();
+  F=wallFront();
     updateWalls(x,y,orient,L,R,F);
 
     
   }
+
   
 
 

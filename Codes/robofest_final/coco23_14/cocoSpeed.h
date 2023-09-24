@@ -134,39 +134,39 @@ void cellPara() {
       delay(10);
     }
   }
-//  else if (tof[2] <= 50) {
-//    tofFront();
+  else if (tof[2] <= 50) {
+    tofFront();
 //    for (int i = 0; i < 2; i++) {
-//      while (tof[1] - tof[3] >= 2 ) {
-//        //
-//        //      Serial.print(tof[0]);
-//        //      Serial.print(" , ");
-//        //      Serial.println(tof[5]);
-//        dif = tof[1] - tof[3];
-//        leftPwm = 81 - 20 / (1 + pow(2.73, dif * 0.05));
-//        rightPwm = 85 - 20 / (1 + pow(2.73, dif * 0.05));
-//        turnRight();
-//        tofFront();
-//      }
-//      brake();
-//      delay(10);
-//
-//      while (tof[3] - tof[1]>2) {
-//        //      Serial.print(tof[0]);
-//        //      Serial.print(" , ");
-//        //      Serial.println(tof[5]);
-//        dif = tof[3] - tof[1];
-//        leftPwm = 81 - 20 / (1 + pow(2.73, dif * 0.05));
-//        rightPwm = 85 - 20 / (1 + pow(2.73, dif * 0.05));
-//        turnLeft();
-//        tofFront();
-//      }
-//      brake();
-//      delay(10);
-//    }
+      while (tof[1] - tof[3] >= 2 ) {
+        //
+        //      Serial.print(tof[0]);
+        //      Serial.print(" , ");
+        //      Serial.println(tof[5]);
+        dif = tof[1] - tof[3];
+        leftPwm = 81 - 20 / (1 + pow(2.73, dif * 0.05));
+        rightPwm = 85 - 20 / (1 + pow(2.73, dif * 0.05));
+        turnRight();
+        tofFront();
+      }
+      brake();
+      delay(10);
+
+      while (tof[3] - tof[1]>2) {
+        //      Serial.print(tof[0]);
+        //      Serial.print(" , ");
+        //      Serial.println(tof[5]);
+        dif = tof[3] - tof[1];
+        leftPwm = 81 - 20 / (1 + pow(2.73, dif * 0.05));
+        rightPwm = 85 - 20 / (1 + pow(2.73, dif * 0.05));
+        turnLeft();
+        tofFront();
+      }
+      brake();
+      delay(10);
+    }
 //  }
-//  leftPwm = leftBase;
-//  rightPwm = rightBase;
+  leftPwm = leftBase;
+  rightPwm = rightBase;
 }
 
 //------------------------------------------------------------------------------------------

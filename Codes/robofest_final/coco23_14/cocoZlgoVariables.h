@@ -17,7 +17,7 @@ byte x_2;
 byte y_2;
 byte x_3;
 byte y_3;
-byte mazeSize = 16;
+byte mazeSize = 14;
 char dir;
 char turning;
 QueueArray <byte> queue;

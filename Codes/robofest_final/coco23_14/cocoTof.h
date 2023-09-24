@@ -124,6 +124,7 @@ bool wallLeft() {
   else {
     return false;
   }
+  
 }
 
 bool wallRight() {
@@ -134,6 +135,7 @@ bool wallRight() {
   else {
     return false;
   }
+  
 }
 
 bool wallFront() {
@@ -144,6 +146,7 @@ bool wallFront() {
   else {
     return false;
   }
+  
 }
 
 
