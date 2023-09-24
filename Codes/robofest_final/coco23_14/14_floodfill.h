@@ -16,26 +16,26 @@ while(1){
       }
 
 
-    }
+    
     floodFill3();
                 
   }
   else{
 
     if(state==1){
-     appendDestination(0,0,true);
+     changeDestination(0,0);
       state+=1;
 
     }
     else if(state==0){
       center();
-      sppendDestination(13,0,false);
+      changeDestination(13,0);
       state=state+1;
     }
 
-
-  }
   floodFill2();
+  }
+  
 
 if (shortPath){
   dir=toMove2();

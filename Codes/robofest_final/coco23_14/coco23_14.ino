@@ -4,6 +4,8 @@
 #include "cocoVariables.h"
 #include "piccolaZlgoVariables.h"
 #include "piccolaZlgo.h"
+#include "new_functions.h"
+
 #include "cocoPins.h"
 #include "cocoTof.h"
 #include "cocoMotors.h"
@@ -80,19 +82,19 @@ void loop() {
   else{
 
     if(state==1){
-     appendDestination(0,0,false);
+     changeDestination(0,0);
       state+=1;
 
     }
     else if(state==0){
       center();
-      appendDestination(13,0,false);
+      changeDestination(13,0);
       state=state+1;
     }
 
-
-  }
   floodFill2();
+  }
+  
 
 if (shortPath){
   dir=toMove2();
