@@ -192,8 +192,8 @@ void goCell() {
     leftForward(leftBase + 30);
     delay(10);
   }
-  encoderRightCount += 240;
-  encoderLeftCount += 240;
+  encoderRightCount += 225;
+  encoderLeftCount += 225;
   while (rightEncoder <= encoderRightCount || leftEncoder <= encoderLeftCount)
   {
     wallFollow();

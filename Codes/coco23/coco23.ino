@@ -23,20 +23,20 @@ void setup() {
   int x = 0;
   int y = 0;
   int orient = 0;
-
+goCell();
 }
 void loop() {
-  if (!wallLeft()) {
-    leftAboutTurn();
-    delay(250);
-  }
-  while (wallFront()) {
-    rightAboutTurn();
-    delay(100);
-  }
-
-  goCell();
-  delay(250);
+//  if (!wallLeft()) {
+//    leftAboutTurn();
+//    delay(250);
+//  }
+//  while (wallFront()) {
+//    rightAboutTurn();
+//    delay(100);
+//  }
+//
+//  goCell();
+//  delay(250);
 
 //leftAboutTurn();
 //delay(750);
