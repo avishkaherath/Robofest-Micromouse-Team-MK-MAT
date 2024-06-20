@@ -47,7 +47,7 @@ void calculatePath(boolean runningNext){
         
         xprev=x;
         yprev=y;
-        updateCoordinates();
+        updateCoordinates(x,y,orient);
         
         
   }
@@ -162,7 +162,7 @@ void traverse(byte xdes, byte ydes, boolean middleSquare, boolean shortPath, boo
         }
         xprev=x;
         yprev=y;
-        updateCoordinates();
+        updateCoordinates(x,y,orient);
   }
   }
 
@@ -244,7 +244,7 @@ void traverse(byte xdes, byte ydes, boolean middleSquare, boolean shortPath, boo
 
           xprev=x;
           yprev=y;
-          updateCoordinates();
+          updateCoordinates(x,y,orient);
         
       }
 
@@ -310,7 +310,7 @@ void traverse(byte xdes, byte ydes, boolean middleSquare, boolean shortPath, boo
 
           xprev=x;
           yprev=y;
-          updateCoordinates();
+          updateCoordinates(x,y,orient);
           
         }   
     }
@@ -544,5 +544,3 @@ void writeCells(){
 
 
 // }
-
-

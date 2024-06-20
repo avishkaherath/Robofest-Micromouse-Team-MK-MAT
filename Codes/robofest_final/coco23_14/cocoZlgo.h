@@ -157,7 +157,7 @@ byte orientation(byte orient, char turning){
 
 
 
-byte updateCoordinates(){//byte x, byte y, byte orient){
+byte updateCoordinates(byte x, byte y, byte orient){//byte x, byte y, byte orient){
     
     if (orient==0){
         y=y+1;}
@@ -169,7 +169,7 @@ byte updateCoordinates(){//byte x, byte y, byte orient){
         x=x-1;}
         
 
-    //return(x,y);
+    return(x,y);
 }
 
 
@@ -474,8 +474,7 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
     byte minVal=minVals[0];
     byte minCell=0;
     byte noMovements=0;
-    
-    
+        
     for (int i=0; i<4;i++){
         if (minVals[i]!= 254){
             noMovements+=1;}
@@ -488,10 +487,10 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
                 minCell= i;
             }
             else{
-//              if(i==prev){
-//                
-//              }
-                if(i!=prev){
+              if(i==prev){
+                
+              }
+                else {
                     minVal= minVals[i];
                     minCell= i;
                     
@@ -514,7 +513,7 @@ char toMove(byte x,byte y,byte xprev,byte yprev,byte orient){
         return('R');}
     else{
         return('B');}
-        delay(1);
+        
 
 
 }
@@ -576,7 +575,7 @@ void center(){
     goCell();
     xprev=x;
     yprev=y;
-    x,y = updateCoordinates();
+    x,y = updateCoordinates(x,y,orient);
 
     L=wallLeft();
   R=wallRight();
@@ -588,7 +587,7 @@ void center(){
     goCell();
     xprev=x;
     yprev=y;
-    x,y = updateCoordinates();
+    x,y = updateCoordinates(x,y,orient);
 
     L=wallLeft();
   R=wallRight();
@@ -600,7 +599,7 @@ void center(){
     goCell();
     xprev=x;
     yprev=y;
-    x,y = updateCoordinates();
+    x,y = updateCoordinates(x,y,orient);
 
     L=wallLeft();
   R=wallRight();
@@ -612,7 +611,7 @@ void center(){
     goCell();
     xprev=x;
     yprev=y;
-    x,y = updateCoordinates();
+    x,y = updateCoordinates(x,y,orient);
 
     L=wallLeft();
   R=wallRight();
@@ -629,7 +628,7 @@ void center(){
     goCell();
     xprev=x;
     yprev=y;
-    x,y = updateCoordinates();
+    x,y = updateCoordinates(x,y,orient);
 
     L=wallLeft();
   R=wallRight();
@@ -641,7 +640,7 @@ void center(){
     goCell();
     xprev=x;
     yprev=y;
-    x,y = updateCoordinates();
+    x,y = updateCoordinates(x,y,orient);
 
     L=wallLeft();
   R=wallRight();
@@ -653,7 +652,7 @@ void center(){
     goCell();
     xprev=x;
     yprev=y;
-    x,y = updateCoordinates();
+    x,y = updateCoordinates(x,y,orient);
 
     L=wallLeft();
   R=wallRight();
@@ -665,7 +664,7 @@ void center(){
     goCell();
     xprev=x;
     yprev=y;
-    x,y = updateCoordinates();
+    x,y = updateCoordinates(x,y,orient);
 
     L=wallLeft();
   R=wallRight();

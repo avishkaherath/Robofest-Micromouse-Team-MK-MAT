@@ -66,22 +66,22 @@ void tofPid()
   tcaselect(7);
   //    delay(10);
   tof[0] = lox61.readRange() - 14;
-  Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
+//  Serial.print("tof[0] "); Serial.print(tof[0]); Serial.print("   ");
 
   tcaselect(2);
   //    delay(10);
   tof[4] = lox61.readRange() - 4;
-  Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("   ");
+//  Serial.print("tof[4] "); Serial.print(tof[4]); Serial.print("   ");
 
   tcaselect(0);
   //  delay(10);
   tof[5] = lox61.readRange() - 2;
-  Serial.print("tof[5] "); Serial.print(tof[5]); Serial.print("   ");
+//  Serial.print("tof[5] "); Serial.print(tof[5]); Serial.print("   ");
 
   tcaselect(1);
   //    delay(10);
   tof[6] = lox61.readRange() - 7;
-  Serial.print("tof[6] "); Serial.print(tof[6]); Serial.println("");
+//  Serial.print("tof[6] "); Serial.print(tof[6]); Serial.println("");
 }
 
 void tofStart()
